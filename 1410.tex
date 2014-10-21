@@ -268,8 +268,7 @@ In this section, we will describe how to evaluate a given selection plan of roug
 
 For the exact evaluation of the expected penalty cost $\mathbb{E}_{\Lambda(\boldsymbol{x})}\big[P(\boldsymbol{x})\big]$ of a given policy $\boldsymbol{x}$, we will suffer from the ``curse of dimensionality" when the number of critical components becomes large, since each critical component contributes a dimension in computing the convolution and integration in Equation \eqref{EP2}. The computation time will become intractable as the number of cirtical components grows. (In a special case, if the repair time $r$ for each rough design of each component is the same, the system downtime equals the product of the number of failures of the system and $r$. In this case, we only need to compute the integration part. But we will still face the ``curse of dimensionality" in computing the integration part.) With the consideration of the real life situation, we introduce an approximation method to help estimate the expected penalty cost. Remember that the expected penalty cost is the expected exceeding downtime multiplied with the penalty cost rate, i.e., $\big[D(\boldsymbol{x})-D_0\big]^{+}c_p$. Then if we can find an approximation method to calculate the distribution of the system downtime $D(\boldsymbol{x})$ efficiently, it will become relatively easy to evaluate the expected penalty cost in the objective function.
 
-%$\mu_{i}(\boldsymbol{x_{i}})$, $\sigma_{i}(\boldsymbol{x_{i}})$,
-%\subsection{Approximation evaluation}
+
 \subsection{Two-moment fits of the downtime distributions}
 
 As we mentioned before, the total downtime $D(\boldsymbol{x})$ is the summation of the downtimes for all critical components and the number of failures for each component is Poisson distributed. In the approximate evaluation, we approximate the downtime by fitting a mixed Erlang distribution to the first two moments of $D(\boldsymbol{x})$. From Equation \eqref{D}, we can obtain the first moment, variance and second moment of $D(\boldsymbol{x})$ over the distributions of $S_{i}(\boldsymbol{x_{i}})$ ($i=1,2,\dots,n$) are given by
@@ -314,14 +313,14 @@ Given that $\mu_{D}>0$, and $0<c_{v}\leq 1$, according to Tijms 1994, we fit the
 &&+\bigg[\frac{k(\boldsymbol{x})-q_{E}(\boldsymbol{x})}{\theta(\boldsymbol{x})}\bigg]\frac{\big[\theta(\boldsymbol{x})D_{0}\big]^{k(\boldsymbol{x})-1}}{\big[k(\boldsymbol{x})-1\big]!}e^{-\theta(\boldsymbol{x})D_{0}}.
 \label{EXD1}
 \end{eqnarray}
-The derivation is given in Appendix.
+The derivation is given in Appendix \ref{AG}.
 
 
 If $c_{v} \geq 1$, we fit the downtime distribution to an Hyperexponential distribution with parameters$(\theta_{1},\theta_{2}, q_{H})$ such that the first two moments of $D(\boldsymbol{x})$ equal the first two moments of the Hyperexponential distribution. Thus the parameters of the Hyperexponential distribution can be obtained as
 \begin{eqnarray}
      \theta_{1}(\boldsymbol{x}) &=& \frac{2}{\mu_{D}(\boldsymbol{x})}\bigg(1+\sqrt{\frac{c^{2}_{v}(\boldsymbol{x})-\frac{1}{2}}{c^{2}_{v}(\boldsymbol{x})+1}} \bigg), \label{theta11}\\
-     \theta_{2}(\boldsymbol{x}) &=& \frac{4}{\mu_{D}(\boldsymbol{x})} - \theta_{1}(\boldsymbol{x}), \label{theta12}\\.
-     q_{H}(\boldsymbol{x}) &=& \frac{\theta_1(\boldsymbol{x})(\theta_2(\boldsymbol{x})\mu_{D}(\boldsymbol{x})-1)}{\theta_2(\boldsymbol{x}) -\theta_1(\boldsymbol{x})}. \label{q2}
+     \theta_{2}(\boldsymbol{x}) &=& \frac{4}{\mu_{D}(\boldsymbol{x})} - \theta_{1}(\boldsymbol{x}), \label{theta12}\\
+     q_{H}(\boldsymbol{x}) &=& \frac{\theta_1(\boldsymbol{x})(\theta_2(\boldsymbol{x})\mu_{D}(\boldsymbol{x})-1)}{\theta_2(\boldsymbol{x}) -\theta_1(\boldsymbol{x})} \label{q2}
 \end{eqnarray}
 Then the expected exceeding total downtime can be approximated by
 \begin{eqnarray}
@@ -388,34 +387,133 @@ where $D_{f}$ is the level factor of $D_{0}(\boldsymbol{x})$, it reflects the in
   \label{tab:testbedmur}%
 \end{table}
 
-We present the results of the test beds in Table \ref{generalapptable}. To see how the approximation results deviate from the simulation results for each instance, we compute the proportion of the exceeded downtime in the total downtime simulatively $D_{E_{p}}^{S}$ and approximately $D_{E_{p}}^{A}$ and the confidence interval $D_{E_{p}}^{S}$. Then the accuracy of our approximation are assessed by the the average gap $avg$ $G$ and maximum gap $max$ $G$ between $D_{E_{p}}^{S}$ and $D_{E_{p}}^{A}$. The $D_{E_{p}}^{S}$, $D_{E_{p}}^{A}$, confidence interval of $D_{E_{p}}^{S}$, $avg$ $G$ and $max$ $G$ for each instance are shown in Table \ref{lognormal1} and Table \ref{uniform1} in \ref{detailapptable}. In Table \ref{generalapptable}, the compare between $D_{E_{p}}^{S}$ and $D_{E_{p}}^{A}$ are made by computing $avg$ $G$ and $max$ $G$ for each level of a certain factor. For example, in the second row of Table \ref{generalapplog}, $avg$ $G$ and $max$ $G$ represent that for $\alpha = 5$, the average gap and maximum gap of the subset $\Lambda_{n_{5}}=\{(n_{5},\sigma_{\beta},D_{\gamma})|\sigma\in\{0.2,0.35,0.5\},\gamma\in\{01,02,03,04\}\}$, where $\Lambda_{n_{5}}\in \Lambda$.
+We present the results of the test beds in Table \ref{lognormal1} and \ref{uniform1} . To see how the approximation results deviate from the simulation results for each instance, we compute the proportion of the exceeded downtime in the total downtime simulatively $D_{E_{p}}^{S}$ and approximately $D_{E_{p}}^{A}$ and the confidence interval of $D_{E_{p}}^{S}$. Then the accuracy of our approximation are assessed by the the average gap $avg$ $G$ and maximum gap $max$ $G$ between $D_{E_{p}}^{S}$ and $D_{E_{p}}^{A}$.
 
-From the test beds results, the first insight we can get is both $avg$ $G$ and $max$ $G$ are small for different cases, which means our approximation is accurate under various parameter settings. Furthermore, our approximation method has the highest accuracy for the cases where $n$ is large and $\sigma$ is small. Our approximation has done very well for all the cases where $n=50$ and $n=100$. When $n=5$, the value of the extra total downtime $D_{E}$ is relatively small, even slight difference can results in relatively large gap between $D_{E_{p}}^{A}$ and $D_{E_{p}}^{S}$. With $\sigma$ increasing, the $avg$ $G$ is also increasing. This is because the deviations in $\lambda_{i}$ increases the complexity of predicting the total downtime. In large $D_{0}$s, relative large $avg$ $G$ can be observed, this is also because the value of $D_{E}$ becomes very close to zero. Note that our computation time for all the instances are negligible. The estimation of the probability density function of the downtime distribution by simulation and approximation are show in Figure \ref{fig:lognormal} and Figure \ref{fig:uniform}.
+From the test beds results, the first insight we can get is both $avg$ $G$ and $max$ $G$ are small for different cases, which means our approximation is accurate under various parameter settings. Furthermore, our approximation method has the highest accuracy for the cases where $n$ is large and $\sigma$ is small. Our approximation has done very well for all the cases where $n=50$ and $n=100$. When $n=5$, the value of the extra total downtime $D_{E}$ is relatively small, even slight difference can results in relatively large gap between $D_{E_{p}}^{A}$ and $D_{E_{p}}^{S}$. With $\sigma$ increasing, the $avg$ $G$ is also increasing. This is because the deviations in $\lambda_{i}$ increases the complexity of predicting the total downtime. In large $D_{0}$s, relative large $avg$ $G$ can be observed, this is also because the value of $D_{E}$ becomes very close to zero. The estimation of the probability density function of the downtime distribution by simulation and approximation are show in Figure \ref{fig:lognormal} and Figure \ref{fig:uniform}.
+
+% Table generated by Excel2LaTeX from sheet 'erlanglognormalS100000'
+\begin{table}[htbp]
+  \centering
+  \caption{Simulation and approximation results in the case of lognormal distributed failure rates and mixed Erlang distribution}
+    \begin{tabular}{rrrcrr}
+    \toprule
+          & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{l}}$ & Confidence interval of $D_{E_{p}}^{S_{l}}$ & $avg$ $G_{l}$ & $max$ $G_{l}$ \\
+    \midrule
+    $(n_{5},\sigma_{0.2},D_{01})$ & 14,58 & 14,70 & (14,68, 14,72) & 0,0012 & 0,0027 \\
+    $(n_{5},\sigma_{0.2},D_{02})$ & 9,62  & 9,59  & (9,57, 9,60) & 0,0003 & 0,0015 \\
+    $(n_{5},\sigma_{0.2},D_{03})$ & 6,26  & 6,11  & (6,10, 6,13) & 0,0015 & 0,0033 \\
+    $(n_{5},\sigma_{0.2},D_{04})$ & 4,02  & 3,84  & (3,83, 3,85) & 0,0019 & 0,0026 \\
+    $(n_{5},\sigma_{0.35},D_{01})$ & 15,65 & 15,73 & (15,70, 15,75) & 0,0008 & 0,0027 \\
+    $(n_{5},\sigma_{0.35},D_{02})$ & 10,58 & 10,55 & (10,53, 10,56) & 0,0004 & 0,0018 \\
+    $(n_{5},\sigma_{0.35},D_{03})$& 7,09  & 6,97  & (6,95, 6,98) & 0,0013 & 0,0025 \\
+    $(n_{5},\sigma_{0.35},D_{04})$ & 4,71  & 4,55  & (4,53, 4,56) & 0,0016 & 0,0024 \\
+    $(n_{5},\sigma_{0.5},D_{01})$ & 17,15 & 17,15 & (17,13, 17,17) & 0,0000 & 0,0020 \\
+    $(n_{5},\sigma_{0.5},D_{02})$ & 11,96 & 11,89 & (11,87, 11,91) & 0,0006 & 0,0023 \\
+    $(n_{5},\sigma_{0.5},D_{03})$ & 8,29  & 8,18  & (8,16, 8,20) & 0,0011 & 0,0027 \\
+    $(n_{5},\sigma_{0.5},D_{04})$ & 5,72  & 5,60  & (5,58, 5,61) & 0,0012 & 0,0020 \\
+    $(n_{50},\sigma_{0.2},D_{01})$ & 4,28  & 4,29  & (4,28, 4,29) & 0,0001 & 0,0006 \\
+    $(n_{50},\sigma_{0.2},D_{02})$ & 1,00  & 0,98  & (0,98, 0,98) & 0,0003 & 0,0005 \\
+    $(n_{50},\sigma_{0.2},D_{03})$ & 0,15  & 0,14  & (0,14, 0,14) & 0,0001 & 0,0002 \\
+    $(n_{50},\sigma_{0.2},D_{04})$ & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0000 \\
+    $(n_{50},\sigma_{0.35},D_{01})$ & 4,82  & 4,82  & (4,81, 4,83) & 0,0000 & 0,0005 \\
+    $(n_{50},\sigma_{0.35},D_{02})$ & 1,36  & 1,34  & (1,34, 1,35) & 0,0002 & 0,0004 \\
+    $(n_{50},\sigma_{0.35},D_{03})$& 0,28  & 0,27  & (0,27, 0,27) & 0,0001 & 0,0002 \\
+    $(n_{50},\sigma_{0.35},D_{04})$ & 0,04  & 0,04  & (0,04, 0,04) & 0,0000 & 0,0001 \\
+    $(n_{50},\sigma_{0.5},D_{01})$ & 5,56  & 5,54  & (5,53, 5,55) & 0,0002 & 0,0007 \\
+    $(n_{50},\sigma_{0.5},D_{02})$& 1,88  & 1,89  & (1,89, 1,90) & 0,0001 & 0,0005 \\
+    $(n_{50},\sigma_{0.5},D_{03})$ & 0,51  & 0,52  & (0,52, 0,52) & 0,0002 & 0,0003 \\
+    $(n_{50},\sigma_{0.5},D_{04})$ & 0,11  & 0,12  & (0,12, 0,12) & 0,0001 & 0,0002 \\
+   $(n_{100},\sigma_{0.2},D_{01})$ & 3,05  & 3,05  & (3,04, 3,05) & 0,0000 & 0,0004 \\
+   $(n_{100},\sigma_{0.2},D_{02})$  & 0,35  & 0,34  & (0,33, 0,34) & 0,0001 & 0,0002 \\
+   $(n_{100},\sigma_{0.2},D_{03})$  & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0000 \\
+   $(n_{100},\sigma_{0.2},D_{04})$  & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
+   $(n_{100},\sigma_{0.35},D_{01})$ & 3,44  & 3,44  & (3,43, 3,44) & 0,0000 & 0,0006 \\
+   $(n_{100},\sigma_{0.35},D_{02})$ & 0,53  & 0,52  & (0,52, 0,53) & 0,0000 & 0,0002 \\
+   $(n_{100},\sigma_{0.35},D_{03})$& 0,04  & 0,04  & (0,04, 0,04) & 0,0000 & 0,0000 \\
+   $(n_{100},\sigma_{0.35},D_{01})$ & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
+    \bottomrule
+    \end{tabular}%
+  \label{lognormal1}%
+\end{table}%
 
 \begin{table}[htbp]
   \centering
-  \caption{Results of the test bed under lognormal distribution}
-    \begin{tabular}{lrrrr}
+  \caption{(Continued) Simulation and approximation results in the case of lognormal distributed failure rates and mixed Erlang distribution}
+    \begin{tabular}{rrrcrr}
     \toprule
-          & \multicolumn{2}{c}{Lognormal distribution} & \multicolumn{2}{c}{Uniform distribution} \\
-          & \multicolumn{2}{c}{Gap} & \multicolumn{2}{c}{Gap} \\
-          & \multicolumn{1}{c}{$avg$ $G_{l}$} & \multicolumn{1}{c}{$max$ $G_{l}$} & \multicolumn{1}{c}{$avg$ $G_{n}$} & \multicolumn{1}{c}{$max$ $G_{n}$} \\
+          & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{l}}$ & Confidence interval of $D_{E_{p}}^{S_{l}}$ & $avg$ $G_{l}$ & $max$ $G_{l}$ \\
     \midrule
-     $\Lambda$  & 0,0004 & 0,0029 & 0,0005 & 0,0082 \\
-     $\Lambda_{n_{5}}$ & 0,0010 & 0,0029 & 0,0012 & 0,0082 \\
-    $\Lambda_{n_{50}}$ & 0,0001 & 0,0009 & 0,0002 & 0,0021 \\
-    $\Lambda_{n_{100}}$ & 0,0000 & 0,0005 & 0,0001 & 0,0016 \\
-    $\Lambda_{\sigma_{0.2}}$ & 0,0004 & 0,0029 & 0,0004 & 0,0082 \\
-    $\Lambda_{\sigma_{0.35}}$ & 0,0004 & 0,0028 & 0,0005 & 0,0075 \\
-   $\Lambda_{\sigma_{0.5}}$ & 0,0003 & 0,0024 & 0,0006 & 0,0076 \\
-   $\Lambda_{D_{01}}$ & 0,0003 & 0,0029 & 0,0005 & 0,0082 \\
-   $\Lambda_{D_{02}}$ & 0,0002 & 0,0023 & 0,0003 & 0,0058 \\
-   $\Lambda_{D_{03}}$  & 0,0005 & 0,0025 & 0,0006 & 0,0043 \\
-    $\Lambda_{D_{04}}$  & 0,0006 & 0,0028 & 0,0007 & 0,0051 \\
+ $(n_{100},\sigma_{0.5},D_{01})$  & 3,97  & 3,96  & (3,96, 3,97) & 0,0001 & 0,0005 \\
+   $(n_{100},\sigma_{0.5},D_{02})$ & 0,82  & 0,83  & (0,82, 0,83) & 0,0001 & 0,0003 \\
+   $(n_{100},\sigma_{0.5},D_{03})$ & 0,10  & 0,11  & (0,11, 0,11) & 0,0001 & 0,0001 \\
+   $(n_{100},\sigma_{0.5},D_{04})$ & 0,01  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0000 \\
+      \bottomrule
+     \end{tabular}%
+  \label{lognormal2}%
+\end{table}%
+
+% Table generated by Excel2LaTeX from sheet 'erlanguniformS100000'
+\begin{table}[htbp]
+  \centering
+  \caption{Simulation and approximation results in the case of uniform distributed failure rates and mixed Erlang distribution}
+ \begin{tabular}{rrrcrr}
+    \toprule
+& $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{u}}$ & Confidence interval of $D_{E_{p}}^{S_{u}}$ & $avg$ $G_{u}$ & $max$ $G_{u}$ \\
+    \midrule
+    $(n_{5},\sigma_{0.2},D_{01})$ & 14,58 & 14,70 & (14,68, 14,7) & 0,0012 & 0,0025 \\
+    $(n_{5},\sigma_{0.2},D_{02})$  & 9,62  & 9,60  & (9,58, 9,6) & 0,0002 & 0,0015 \\
+    $(n_{5},\sigma_{0.2},D_{03})$  & 6,26  & 6,12  & (6,1, 6,12) & 0,0014 & 0,0029 \\
+    $(n_{5},\sigma_{0.2},D_{04})$  & 4,02  & 3,83  & (3,82, 3,83) & 0,0019 & 0,0027 \\
+    $(n_{5},\sigma_{0.35},D_{01})$ & 15,65 & 15,82 & (15,8, 15,82) & 0,0017 & 0,0033 \\
+    $(n_{5},\sigma_{0.35},D_{02})$ & 10,58 & 10,57 & (10,55, 10,57) & 0,0001 & 0,0017 \\
+    $(n_{5},\sigma_{0.35},D_{03})$ & 7,09  & 6,97  & (6,96, 6,97) & 0,0012 & 0,0020 \\
+    $(n_{5},\sigma_{0.35},D_{04})$ & 4,71  & 4,53  & (4,52, 4,53) & 0,0018 & 0,0025 \\
+    $(n_{5},\sigma_{0.5},D_{01})$ & 17,15 & 17,38 & (17,35, 17,38) & 0,0023 & 0,0044 \\
+    $(n_{5},\sigma_{0.5},D_{02})$ & 11,96 & 12,01 & (11,99, 12,01) & 0,0005 & 0,0026 \\
+    $(n_{5},\sigma_{0.5},D_{03})$ & 8,29  & 8,18  & (8,17, 8,18) & 0,0011 & 0,0024 \\
+    $(n_{5},\sigma_{0.5},D_{04})$ & 5,72  & 5,54  & (5,53, 5,54) & 0,0018 & 0,0036 \\
+    $(n_{50},\sigma_{0.2},D_{01})$  & 4,28  & 4,28  & (4,28, 4,28) & 0,0001 & 0,0004 \\
+    $(n_{50},\sigma_{0.2},D_{02})$ & 1,00  & 0,98  & (0,97, 0,98) & 0,0003 & 0,0005 \\
+    $(n_{50},\sigma_{0.2},D_{03})$  & 0,15  & 0,13  & (0,13, 0,13) & 0,0002 & 0,0002 \\
+    $(n_{50},\sigma_{0.2},D_{04})$  & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0001 \\
+    $(n_{50},\sigma_{0.35},D_{01})$ & 4,82  & 4,83  & (4,83, 4,83) & 0,0001 & 0,0005 \\
+    $(n_{50},\sigma_{0.35},D_{02})$ & 1,36  & 1,33  & (1,33, 1,33) & 0,0003 & 0,0006 \\
+    $(n_{50},\sigma_{0.35},D_{03})$ & 0,28  & 0,25  & (0,25, 0,25) & 0,0003 & 0,0004 \\
+    $(n_{50},\sigma_{0.35},D_{04})$ & 0,04  & 0,03  & (0,03, 0,03) & 0,0001 & 0,0001 \\
+    $(n_{50},\sigma_{0.5},D_{01})$ & 5,56  & 5,58  & (5,57, 5,58) & 0,0002 & 0,0008 \\
+    $(n_{50},\sigma_{0.5},D_{02})$  & 1,88  & 1,84  & (1,83, 1,84) & 0,0005 & 0,0009 \\
+    $(n_{50},\sigma_{0.5},D_{03})$ & 0,51  & 0,46  & (0,45, 0,46) & 0,0005 & 0,0006 \\
+    $(n_{50},\sigma_{0.5},D_{04})$ & 0,11  & 0,08  & (0,08, 0,08) & 0,0002 & 0,0003 \\
+    $(n_{100},\sigma_{0.2},D_{01})$  & 3,05  & 3,04  & (3,04, 3,04) & 0,0000 & 0,0004 \\
+    $(n_{100},\sigma_{0.2},D_{02})$ & 0,35  & 0,33  & (0,33, 0,33) & 0,0002 & 0,0003 \\
+    $(n_{100},\sigma_{0.2},D_{03})$ & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0000 \\
+    $(n_{100},\sigma_{0.2},D_{04})$ & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
+    $(n_{100},\sigma_{0.35},D_{01})$ & 3,44  & 3,44  & (3,44, 3,44) & 0,0001 & 0,0005 \\
+    $(n_{100},\sigma_{0.35},D_{02})$ & 0,53  & 0,51  & (0,51, 0,51) & 0,0002 & 0,0003 \\
+    $(n_{100},\sigma_{0.35},D_{03})$ & 0,04  & 0,03  & (0,03, 0,03) & 0,0001 & 0,0001 \\
+    $(n_{100},\sigma_{0.35},D_{04})$ & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
     \bottomrule
     \end{tabular}%
-  \label{generalapptable}%
+  \label{uniform1}%
 \end{table}%
+
+\begin{table}[htbp]
+  \centering
+  \caption{(Continued) Simulation and approximation results in the case of uniform distributed failure rates and mixed Erlang distribution}
+    \begin{tabular}{rrrrrr}
+     \toprule
+    & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{u}}$ & Confidence interval of $D_{E_{p}}^{S_{u}}$ & $avg$ $G_{u}$ & $max$ $G_{u}$ \\
+    \midrule
+    $(n_{100},\sigma_{0.5},D_{01})$  & 3,97  & 3,98  & (3,97, 3,98) & 0,0001 & 0,0005 \\
+    $(n_{100},\sigma_{0.5},D_{02})$ & 0,82  & 0,79  & (0,79, 0,79) & 0,0003 & 0,0005 \\
+    $(n_{100},\sigma_{0.5},D_{03})$ & 0,10  & 0,09  & (0,08, 0,09) & 0,0001 & 0,0002 \\
+    $(n_{100},\sigma_{0.5},D_{04})$ & 0,01  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
+    \bottomrule
+    \end{tabular}%
+  \label{uniform2}%
+\end{table}%
+ 
+
 \section{Optimization}
 
 In the previous section, we have discussed how a given policy, which is the selection of rough designs for all the critical components in the system can be evaluated in an approximate way. In this section, we will describe a method of finding a feasible policy for problem (P) with as low life cycle costs as possible. The problem is formulated as a binary integer programming with a nonlinear objective function.
@@ -577,10 +675,7 @@ Number    & $c_{a}^{i1}$ & $c_{r}^{i1}$ & $r_{i1}$ & $\mu_{i1}$ & $\sigma_{i1}$ 
 
 \begin{appendices}
 
-%\section{Simulation procedures}
-%\section{Proof of Proposition 1}
-%\label{Pro1}
-%Suppose that
+
 \section{Procedures of the Monte Carlo simulation}
 \label{MCP}
 \begin{description}
@@ -592,7 +687,7 @@ First, we generated the sequences of $r_{i}$, $\mu_{i}$ and $\sigma_{i}$, $i=\{1
 
 \item[Step 2]
 
-Repeat step 1 for 10000 times to get 10000 $\hat{D}_{E_{p}}^{S}$, we take the expected value $\bar{D}_{E_{p}}^{S}$ of all the $\hat{D}_{E_{p}}^{S}$ and compare it with the approximation result $D_{E_{p}}^{A}$ according to Eqs. \eqref{EXD1} or \eqref{EXD2}  to get a value of the absolute gap between $\bar{D}_{E_{p}}^{S}$ and $D_{E_{p}}^{A}$.
+Repeat step 1 for 100000 times to get 100000 $\hat{D}_{E_{p}}^{S}$, we take the expected value $\bar{D}_{E_{p}}^{S}$ of all the $\hat{D}_{E_{p}}^{S}$ and compare it with the approximation result $D_{E_{p}}^{A}$ according to Eqs. \eqref{EXD1} or \eqref{EXD2}  to get a value of the absolute gap between $\bar{D}_{E_{p}}^{S}$ and $D_{E_{p}}^{A}$.
 
 \item[Step 3]
 
@@ -615,8 +710,6 @@ The variance $\sigma_{D}(\boldsymbol{x})$ of $D(\boldsymbol{x})$ is given by:
 &=& \mathbb{E}_{\Lambda(\boldsymbol{x})}\bigg[\bigg[\sum_{i=1}^{n}{r_{i}(\boldsymbol{x_{i}})\lambda_{i}(\boldsymbol{x_{i}})T}\bigg]^{2} +\sum_{i=1}^{n}{r_{i}^{2}(\boldsymbol{x_{i}})\lambda_{i}(\boldsymbol{x_{i}})T}\bigg]-\bigg[T\sum_{i=1}^{n}{r_{i}(\boldsymbol{x_i})\mu_{i}(\boldsymbol{x_i})}\bigg]^{2}\nonumber\\
 &=&\sum_{i=1}^{n}{r_{i}^{2}(\boldsymbol{x_i})\mu_{i}(\boldsymbol{x_i})T}\nonumber\\
 &=&\frac{\sqrt{k(\boldsymbol{x})-q^{2}(\boldsymbol{x})}}{\lambda(\boldsymbol{x})}
-%&=&T^{2}\sum_{i=1}^{n}r_{i}(\boldsymbol{X})^{2}\int_{\lambda_{i}\in\Lambda_{i}}{\lambda_{i}^{2}f(\lambda_{i})d\lambda_{i}}+2T^{2}\sum_{i=1}^{n}\sum_{i\ne j}{r_{i}(\boldsymbol{X_{i}})r_{j}(\boldsymbol{X_{j}})\mu_{i}(\boldsymbol{X_{i}})\mu_{j}(\boldsymbol{X_{j}})} \nonumber\\
-%&&+T\sum_{i=1}^{n}{r_{i}^{2}(\boldsymbol{X_{i}})\mu_{i}(\boldsymbol{X_{i}})}-\bigg[T\sum_{i=1}^{n}{r_{i}(\boldsymbol{X_i})\mu_{i}(\boldsymbol{X_i})}\bigg]^{2}\nonumber\\
 \end{eqnarray}
 \subsection{Identities for the Erlang$(k-1,k)$ distribution}
 Consider an Erlang$(k-1,k)$ distribution $X$ with parameters $(k,\theta,q)$, the probability density function of is
@@ -630,10 +723,16 @@ E_{k-1,k}(x)=q\bigg(1-\sum_{j=0}^{k-2}\frac{(\theta x)^{j}}{j!}e^{-\theta x} \bi
 Then the first partial moment of the Erlang$(k-1,k)$ can be described as:
 \begin{eqnarray}
 \mathbb{E}{[(X-X_{0})^{+}]} &=& \int_{0}^{\infty}{(x-X_{0})^{+}e_{k-1,k}(x)d x} \nonumber\\
+&=& \frac{q(k-1)}{\theta}\int_{X_{0}}^{\infty}{\theta^{k}\frac{x^{k-1}}{(k-1)!}e^{-\theta x}dx}+\frac{k(1-q)}{\theta}\int_{X_0}^{\infty}{\theta^{k+1}\frac{x^{k}}{k!}e^{-\theta x}dx}\nonumber\\
+&&-X_{0}\int_{X_{0}}^{\infty}{e_{k-1,k}(x)dx}\nonumber
+\end{eqnarray}
+Given the probability density function of an Erlang distribution is: $e_{k}^{\theta}(x)=\theta^{k}\frac{x^{k-1}}{(k-1)!}e^{-\theta x}$ and the Erlang cumulative distribution function is $E_{k}^{\theta}(X) = 1-\sum_{j=0}^{k-1}{\frac{(\lambda x)^{j}}{j!}e^{-\lambda x}}$, we have:
+\begin{eqnarray}
+\mathbb{E}{[(X-X_{0})^{+}]}
 &=& \frac{q(k-1)}{\theta}\bigg[1-E_{k}^{\theta}(X_{0})\bigg]+\frac{k(1-q)}{\theta}\bigg[1-E_{k+1}^{\theta}(X_{0})\bigg]-X_{0}\bigg[1-E_{k-1,k}^{\theta}(X_{0})\bigg] \nonumber\\
 &=&(\frac{k-q}{\theta}-X_{0})\sum_{j=0}^{k-2}{\frac{(\theta X_{0})^j}{j!}e^{-\theta X_{0}}}+(\frac{k-q}{\theta})\frac{(\theta X_{0})^{k-1}}{(k-1)!}e^{-\theta X_{0}}\nonumber
 \end{eqnarray}
-where $E_{k}^{\theta}(X)$ is the Erlang cumulative distribution function of $X$, with $E_{k}^{\theta}(X) = 1-\sum_{j=0}^{k-1}{\frac{(\lambda x)^{j}}{j!}e^{-\lambda x}}$.
+
 
 \subsection{Identities for the Hyperexponential distribution}
 For a Hyperexponential distribution $X$ with parameters $(\theta_1,\theta_2,q)$, the probability density function is given as:
@@ -647,198 +746,16 @@ H_{2}(x) = q(1-e^{-\theta_{1}x})+(1-q)(1-e^{-\theta_{2}x}) \nonumber
 And the first partial moment is given as:
 \begin{eqnarray}
 \mathbb{E}{[(X-X_{0})^{+}]} &=& \int^{\infty}_{0}(x-X_{0})^{+}h_{2}(x)dx \nonumber\\
-&=& \int^{\infty}_{X_{0}}{xq\theta_{1}e^{-\theta_{1}x}dx} + \int^{\infty}_{X_{0}}{x(1-q)\theta_{2}e^{-\theta_{2}x}dx}-X_{0}\bigg[1-H_{2}(X_{0}) \bigg] \nonumber\\
-&=& qX_{0}e^{-\theta_{1}X_{0}} + (1-q)X_{0}e^{-\theta_{2}X_{0}} + \frac{q}{\theta_{1}}\bigg[1-F_{\theta_{1}}(X_{0})\bigg]+\frac{1-q}{\theta_{2}}\bigg[1-F_{\theta_{2}}(X_{0}) \bigg] \nonumber\\
+&=& \int^{\infty}_{X_{0}}{xq\theta_{1}e^{-\theta_{1}x}dx} + \int^{\infty}_{X_{0}}{x(1-q)\theta_{2}e^{-\theta_{2}x}dx}-X_{0}\int_{X_{0}}^{\infty}{h_{2}(x)dx} \nonumber\\
+&=& qX_{0}e^{-\theta_{1}X_{0}} + \frac{q}{\theta_{1}}\int_{X_{0}}^{\infty}{\theta e^{-\theta_{1} x}dx} + (1-q)X_{0}e^{-\theta_{2}X_{0}} + \frac{1-q}{\theta_{2}}\int_{X_{0}}^{\infty}{\theta_{2}e^{-\theta_{2}x}dx} \nonumber\\
+&& -X_{0}\bigg[1-H_{2}(X_{0}) \bigg] \nonumber
+\end{eqnarray}
+With the exponential probability density function $f_{\theta}(x)=\theta e^{-\theta x}$, and the exponential cumulative distribution function $F_{\theta}(x)= 1-e^{-\theta x}$, define the complementary distribution function of $F_{\theta}(x)$ as $\bar{F}_{\theta}(x)$, then the first partial moment can be written as:
+\begin{eqnarray}
+\mathbb{E}{[(X-X_{0})^{+}]}&=& qX_{0}e^{-\theta_{1}X_{0}} + (1-q)X_{0}e^{-\theta_{2}X_{0}} + \frac{q}{\theta_{1}}\bigg[1-F_{\theta_{1}}(X_{0})\bigg]+\frac{1-q}{\theta_{2}}\bigg[1-F_{\theta_{2}}(X_{0}) \bigg] \nonumber\\
 &&-X_{0}\bigg[ 1- H_{2}(X_{0})\bigg] \nonumber
 \end{eqnarray}
-where $F_{\theta}(x)$ is the exponential cumulative distribution function of $x$, with $F_{\theta}(x)= 1-e^{-\theta x}$. And $\bar{F}_{\theta}(x)$ is the complementary distribution function of $F_{\theta}(x)$.
-The derivation of these formulas can be found in \ref{AG}.
 
-\section{Detail results of the test bed}
-\label{detailapptable}
-
-% Table generated by Excel2LaTeX from sheet 'sigma0,35'
-  \begin{table}[htbp]
-  \centering
-  \caption{Simulation and approximation results in the case of lognormal distributed failure rates and mixed Erlang distribution}
-    \begin{tabular}{rrrcrr}
-    \toprule
-          & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{l}}$ & Confidence interval of $D_{E_{p}}^{S_{l}}$ & $avg$ $G_{l}$ & $max$ $G_{l}$ \\
-    \midrule
-    $(n_{5},\sigma_{0.2},D_{01})$ & 14,58 & 14,70 & (14,68, 14,72) & 0,0012 & 0,0029 \\
-    $(n_{5},\sigma_{0.2},D_{02})$ & 9,62  & 9,60  & (9,58, 9,62) & 0,0001 & 0,0016 \\
-   $(n_{5},\sigma_{0.2},D_{03})$ & 6,26  & 6,11  & (6,10, 6,13) & 0,0015 & 0,0024 \\
-    $(n_{5},\sigma_{0.2},D_{04})$ & 4,02  & 3,83  & (3,82, 3,84) & 0,0019 & 0,0028 \\
-    $(n_{5},\sigma_{0.35},D_{01})$ & 15,65 & 15,74 & (15,71, 15,77) & 0,0009 & 0,0026 \\
-    $(n_{5},\sigma_{0.35},D_{02})$ & 10,58 & 10,55 & (10,53, 10,57) & 0,0003 & 0,0021 \\
-    $(n_{5},\sigma_{0.35},D_{03})$ & 7,09  & 6,97  & (6,96, 6,99) & 0,0012 & 0,0025 \\
-    $(n_{5},\sigma_{0.35},D_{04})$ & 4,71  & 4,54  & (4,53, 4,55) & 0,0017 & 0,0028 \\
-    $(n_{5},\sigma_{0.5},D_{01})$ & 17,15 & 17,14 & (17,12, 17,16) & 0,0001 & 0,0014 \\
-    $(n_{5},\sigma_{0.5},D_{02})$& 11,96 & 11,89 & (11,88, 11,91) & 0,0006 & 0,0023 \\
-    $(n_{5},\sigma_{0.5},D_{03})$& 8,29  & 8,18  & (8,16, 8,20) & 0,0011 & 0,0024 \\
-    $(n_{5},\sigma_{0.5},D_{04})$ & 5,72  & 5,60  & (5,59, 5,61) & 0,0012 & 0,0022 \\
-    $(n_{50},\sigma_{0.2},D_{01})$ & 4,28  & 4,28  & (4,27, 4,29) & 0,0000 & 0,0006 \\
-    $(n_{50},\sigma_{0.2},D_{02})$ & 1,00  & 0,98  & (0,97, 0,98) & 0,0003 & 0,0005 \\
-    $(n_{50},\sigma_{0.2},D_{03})$ & 0,15  & 0,14  & (0,14, 0,14) & 0,0002 & 0,0002 \\
-    $(n_{50},\sigma_{0.2},D_{04})$ & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0001 \\
-    $(n_{50},\sigma_{0.35},D_{01})$ & 4,82  & 4,82  & (4,81, 4,83) & 0,0000 & 0,0005 \\
-    $(n_{50},\sigma_{0.35},D_{02})$ & 1,36  & 1,35  & (1,34, 1,35) & 0,0001 & 0,0004 \\
-    $(n_{50},\sigma_{0.35},D_{03})$ & 0,28  & 0,27  & (0,27, 0,27) & 0,0001 & 0,0002 \\
-    $(n_{50},\sigma_{0.35},D_{04})$ & 0,04  & 0,04  & (0,04, 0,04) & 0,0000 & 0,0001 \\
-    $(n_{50},\sigma_{0.5},D_{01})$ & 5,56  & 5,54  & (5,53, 5,55) & 0,0002 & 0,0009 \\
-    $(n_{50},\sigma_{0.5},D_{02})$ & 1,88  & 1,89  & (1,89, 1,90) & 0,0001 & 0,0005 \\
-    $(n_{50},\sigma_{0.5},D_{03})$ & 0,51  & 0,52  & (0,52, 0,53) & 0,0002 & 0,0004 \\
-    $(n_{50},\sigma_{0.5},D_{04})$ & 0,11  & 0,12  & (0,12, 0,12) & 0,0001 & 0,0002 \\
-    $(n_{100},\sigma_{0.2},D_{01})$ & 3,05  & 3,05  & (3,04, 3,05) & 0,0000 & 0,0005 \\
-    $(n_{100},\sigma_{0.2},D_{02})$ & 0,35  & 0,34  & (0,33, 0,34) & 0,0001 & 0,0002 \\
-    $(n_{100},\sigma_{0.2},D_{03})$ & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0000 \\
-    $(n_{100},\sigma_{0.2},D_{04})$ & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
-    $(n_{100},\sigma_{0.35},D_{01})$ & 3,44  & 3,44  & (3,43, 3,44) & 0,0000 & 0,0004 \\
-    $(n_{100},\sigma_{0.35},D_{02})$ & 0,53  & 0,52  & (0,52, 0,52) & 0,0001 & 0,0002 \\
-    $(n_{100},\sigma_{0.35},D_{03})$ & 0,04  & 0,04  & (0,04, 0,04) & 0,0000 & 0,0000 \\
-    $(n_{100},\sigma_{0.35},D_{04})$ & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
-    \bottomrule
-    \end{tabular}
-  \label{lognormal1}%
-\end{table}%
-
-
-%\begin{table}[htbp]
-%  \centering
-%  \caption{Simulation and approximation results in the case of lognormal distributed failure rates and mixed Erlang distribution}
-%    \begin{tabular}{rrrcrr}
-%    \toprule
-%          & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{l}}$ & Confidence interval of $D_{E_{p}}^{S_{l}}$ & $avg$ $G_{l}$ & $max$ $G_{l}$ \\
-%    \midrule
-%$(n_{5},\sigma_{0.2},D_{01})$& 14,58 & 14,67 & (14.60, 14.73) & 0,0009 & 0,0056 \\
-%$(n_{5},\sigma_{0.2},D_{02})$& 9,62  & 9,59  & (9.54, 9.63) & 0,0003 & 0,0040 \\
-%$(n_{5},\sigma_{0.2},D_{03})$ & 6,26  & 6,11  & (6.07, 6.15) & 0,0015 & 0,0047 \\
-%$(n_{5},\sigma_{0.2},D_{04})$& 4,02  & 3,82  & (3.79, 3,85) & 0,0020 & 0,0041 \\
-%$(n_{5},\sigma_{0.35},D_{01})$ & 16,09 & 16,15 & (16.06, 16.23) & 0,0006 & 0,0089 \\
-%$(n_{5},\sigma_{0.35},D_{02})$& 11,00 & 10,98 & (10.91, 11.05) & 0,0002 & 0,0062 \\
-%$(n_{5},\sigma_{0.35},D_{03})$ & 7,46  & 7,33  & (7.27, 7.38) & 0,0013 & 0,0059 \\
-%$(n_{5},\sigma_{0.35},D_{04})$ & 5,02  & 4,85  & (4.81, 4.89) & 0,0017 & 0,0041 \\
-%$(n_{5},\sigma_{0.5},D_{01})$ & 18,34 & 18,20 & (18.11, 18.28) & 0,0014 & 0,0073 \\
-%$(n_{5},\sigma_{0.5},D_{02})$ & 13,04 & 12,87 & (12.79, 12.96) & 0,0017 & 0,0099 \\
-%$(n_{5},\sigma_{0.5},D_{03})$ & 9,25  & 9,11  & (9.05, 9.16) & 0,0014 & 0,0052 \\
-%$(n_{5},\sigma_{0.5},D_{04})$ & 6,54  & 6,41  & (6.36, 6.47) & 0,0013 & 0,0059 \\
-% $(n_{50},\sigma_{0.2},D_{01})$& 4,28  & 4,28  & (4.26, 4.29) & 0,0000 & 0,0012 \\
-% $(n_{50},\sigma_{0.2},D_{02})$& 1,00  & 0,98  & (0.97, 0.99) & 0,0003 & 0,0010 \\
-% $(n_{50},\sigma_{0.2},D_{03})$& 0,15  & 0,14  & (0.14, 0.14) & 0,0001 & 0,0004 \\
-% $(n_{50},\sigma_{0.2},D_{04})$ & 0,02  & 0,01  &  (0.01, 0.01) & 0,0000 & 0,0001 \\
-% $(n_{50},\sigma_{0.35},D_{01})$ & 5,05  & 5,04  &  (5.02, 5.07) & 0,0001 & 0,0017 \\
-% $(n_{50},\sigma_{0.35},D_{02})$ & 1,52  & 1,51  &  (1.50, 1.52) & 0,0001 & 0,0010 \\
-% $(n_{50},\sigma_{0.35},D_{03})$ & 0,34  & 0,34  &  (0.33, 0.34) & 0,0000 & 0,0003 \\
-% $(n_{50},\sigma_{0.35},D_{04})$ & 0,06  & 0,06  &  (0.06, 0.06) & 0,0000 & 0,0002 \\
-% $(n_{50},\sigma_{0.5},D_{01})$ & 6,12  & 6,08  &  (6.05, 6.11) & 0,0004 & 0,0028 \\
-% $(n_{50},\sigma_{0.5},D_{02})$ & 2,31  & 2,32  &  (2.30, 2.34) & 0,0001 & 0,0013 \\
-% $(n_{50},\sigma_{0.5},D_{03})$  & 0,72  & 0,76  &  (0.75, 0.77) & 0,0003 & 0,0011 \\
-% $(n_{50},\sigma_{0.5},D_{04})$  & 0,19  & 0,23  &  (0.22, 0.23) & 0,0004 & 0,0007 \\
-% $(n_{100},\sigma_{0.2},D_{01})$& 3,05  & 3,04  &  (3.02, 3.05) & 0,0001 & 0,0016 \\
-% $(n_{100},\sigma_{0.2},D_{02})$ & 0,35  & 0,33  &  (0.33, 0.34) & 0,0002 & 0,0006 \\
-% $(n_{100},\sigma_{0.2},D_{03})$ & 0,02  & 0,01  &  (0.01, 0.01) & 0,0000 & 0,0001 \\
-% $(n_{100},\sigma_{0.2},D_{04})$& 0,00  & 0,00  &  (0.00, 0.00) & 0,0000 & 0,0000 \\
-% $(n_{100},\sigma_{0.35},D_{01})$ & 3,60  & 3,60  &  (3.59, 3.62) & 0,0000 & 0,0011 \\
-% $(n_{100},\sigma_{0.35},D_{02})$ & 0,61  & 0,61  &  (0.61, 0.62) & 0,0000 & 0,0003 \\
-% $(n_{100},\sigma_{0.35},D_{03})$ & 0,05  & 0,05  &  (0.05, 0.06) & 0,0000 & 0,0001 \\
-% $(n_{100},\sigma_{0.35},D_{04})$& 0,00  & 0,00  &  (0.00, 0.00) & 0,0000 & 0,0000 \\
-%    \bottomrule
-%    \end{tabular}%
-%  \label{lognormal1}%
-%\end{table}%
-
-\begin{table}[htbp]
-  \centering
-  \caption{(Continued) Simulation and approximation results in the case of lognormal distributed failure rates and mixed Erlang distribution}
-    \begin{tabular}{rrrcrr}
-    \toprule
-          & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{l}}$ & Confidence interval of $D_{E_{p}}^{S_{l}}$ & $avg$ $G_{l}$ & $max$ $G_{l}$ \\
-    \midrule
-     $(n_{100},\sigma_{0.5},D_{01})$ & 3,97  & 3,96  & (3,95, 3,96) & 0,0001 & 0,0005 \\
-    $(n_{100},\sigma_{0.5},D_{02})$ & 0,82  & 0,83  & (0,82, 0,83) & 0,0001 & 0,0002 \\
-    $(n_{100},\sigma_{0.5},D_{03})$& 0,10  & 0,11  & (0,11, 0,11) & 0,0001 & 0,0001 \\
-    $(n_{100},\sigma_{0.5},D_{04})$ & 0,01  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0000 \\
-    \bottomrule
-    \end{tabular}%
-  \label{lognormal2}%
-\end{table}%
-
-
-%\begin{table}[htbp]
-%  \centering
-%  \caption{(Continued) Simulation and approximation results in the case of lognormal distributed failure rates and mixed Erlang distribution}
-%    \begin{tabular}{rrrcrr}
-%    \toprule
-%          & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{l}}$ & Confidence interval of $D_{E_{p}}^{S_{l}}$ & $avg$ $G_{l}$ & $max$ $G_{l}$ \\
-%    \midrule
-% $(n_{100},\sigma_{0.5},D_{01})$& 4,38  & 4,36  &  (4.34, 4.38) & 0,0002 & 0,0016 \\
-% $(n_{100},\sigma_{0.5},D_{02})$ & 1,07  & 1,10  &  (1.09, 1.11) & 0,0003 & 0,0010 \\
-% $(n_{100},\sigma_{0.5},D_{03})$ & 0,17  & 0,19  &  (0.19, 0.20) & 0,0002 & 0,0005 \\
-% $(n_{100},\sigma_{0.5},D_{04})$& 0,02  & 0,03  &  (0.03, 0.03) & 0,0001 & 0,0002 \\
-%    \bottomrule
-%    \end{tabular}%
-%  \label{lognormal2}%
-%\end{table}%
-
-% Table generated by Excel2LaTeX from sheet 'lognormal'
-\begin{table}[htbp]
-  \centering
-  \caption{Simulation and approximation results in the case of uniform distributed failure rates and mixed Erlang distribution}
- \begin{tabular}{rrrcrr}
-    \toprule
-& $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{u}}$ & Confidence interval of $D_{E_{p}}^{S_{u}}$ & $avg$ $G_{u}$ & $max$ $G_{u}$ \\
-    \midrule
- $(n_{5},\sigma_{0.2},D_{01})$ & 14,58 & 14,68 & (14,68, 14,74) & 0,0010 & 0,0082 \\
- $(n_{5},\sigma_{0.2},D_{02})$& 9,62  & 9,59  & (9,59, 9,64) & 0,0003 & 0,0051 \\
- $(n_{5},\sigma_{0.2},D_{03})$ & 6,26  & 6,13  & (6,13, 6,17) & 0,0013 & 0,0037 \\
- $(n_{5},\sigma_{0.2},D_{04})$& 4,02  & 3,84  & (3,84, 3,87) & 0,0018 & 0,0043 \\
- $(n_{5},\sigma_{0.35},D_{01})$ & 15,65 & 15,79 & (15,79, 15,86) & 0,0014 & 0,0075 \\
- $(n_{5},\sigma_{0.35},D_{02})$& 10,58 & 10,58 & (10,58, 10,64) & 0,0000 & 0,0058 \\
- $(n_{5},\sigma_{0.35},D_{03})$ & 7,09  & 6,94  & (6,94, 6,99) & 0,0015 & 0,0043 \\
- $(n_{5},\sigma_{0.35},D_{04})$ & 4,71  & 4,55  & (4,55, 4,59) & 0,0016 & 0,0047 \\
- $(n_{5},\sigma_{0.5},D_{01})$  & 17,15 & 17,32 & (17,32, 17,41) & 0,0017 & 0,0076 \\
- $(n_{5},\sigma_{0.5},D_{02})$ & 11,96 & 11,97 & (11,97, 12,04) & 0,0002 & 0,0058 \\
- $(n_{5},\sigma_{0.5},D_{03})$  & 8,29  & 8,18  & (8,18, 8,22) & 0,0012 & 0,0039 \\
- $(n_{5},\sigma_{0.5},D_{04})$ & 5,72  & 5,50  & (5,50, 5,54) & 0,0022 & 0,0051 \\
- $(n_{50},\sigma_{0.2},D_{01})$  & 4,28  & 4,27  & (4,27, 4,29) & 0,0001 & 0,0018 \\
- $(n_{50},\sigma_{0.2},D_{02})$  & 1,00  & 0,97  & (0,97, 0,98) & 0,0003 & 0,0011 \\
- $(n_{50},\sigma_{0.2},D_{03})$ & 0,15  & 0,14  & (0,14, 0,14) & 0,0002 & 0,0004 \\
- $(n_{50},\sigma_{0.2},D_{04})$  & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0001 \\
- $(n_{50},\sigma_{0.35},D_{01})$& 4,82  & 4,83  & (4,83, 4,85) & 0,0001 & 0,0015 \\
- $(n_{50},\sigma_{0.35},D_{02})$ & 1,36  & 1,33  & (1,33, 1,34) & 0,0003 & 0,0010 \\
- $(n_{50},\sigma_{0.35},D_{03})$ & 0,28  & 0,25  & (0,25, 0,25) & 0,0003 & 0,0006 \\
- $(n_{50},\sigma_{0.35},D_{04})$& 0,04  & 0,03  & (0,03, 0,03) & 0,0001 & 0,0002 \\
- $(n_{50},\sigma_{0.5},D_{01})$ & 5,56  & 5,58  & (5,58, 5,60) & 0,0002 & 0,0021 \\
- $(n_{50},\sigma_{0.5},D_{02})$ & 1,88  & 1,83  & (1,83, 1,85) & 0,0005 & 0,0015 \\
- $(n_{50},\sigma_{0.5},D_{03})$  & 0,51  & 0,45  & (0,45, 0,46) & 0,0005 & 0,0009 \\
- $(n_{50},\sigma_{0.5},D_{04})$ & 0,11  & 0,08  & (0,08, 0,09) & 0,0002 & 0,0005 \\
- $(n_{100},\sigma_{0.2},D_{01})$ & 3,05  & 3,04  & (3,04, 3,05) & 0,0000 & 0,0010 \\
- $(n_{100},\sigma_{0.2},D_{02})$  & 0,35  & 0,33  & (0,33, 0,34) & 0,0001 & 0,0004 \\
- $(n_{100},\sigma_{0.2},D_{03})$  & 0,02  & 0,01  & (0,01, 0,01) & 0,0000 & 0,0001 \\
- $(n_{100},\sigma_{0.2},D_{04})$ & 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
-  $(n_{100},\sigma_{0.35},D_{01})$  & 3,44  & 3,43  & (3,43, 3,44) & 0,0001 & 0,0012 \\
- $(n_{100},\sigma_{0.35},D_{02})$ & 0,53  & 0,51  & (0,51, 0,51) & 0,0002 & 0,0006 \\
- $(n_{100},\sigma_{0.35},D_{03})$ & 0,04  & 0,03  & (0,03, 0,04) & 0,0001 & 0,0002 \\
- $(n_{100},\sigma_{0.35},D_{04})$& 0,00  & 0,00  & (0,00, 0,00) & 0,0000 & 0,0000 \\
-    \bottomrule
-    \end{tabular}%
-  \label{uniform1}%
-\end{table}%
-\begin{table}[htbp]
-  \centering
-  \caption{(Continued) Simulation and approximation results in the case of uniform distributed failure rates and mixed Erlang distribution}
-    \begin{tabular}{rrrrrr}
-     \toprule
-    & $D_{E_{p}}^{A}$ & $D_{E_{p}}^{S_{u}}$ & Confidence interval of $D_{E_{p}}^{S_{u}}$ & $avg$ $G_{u}$ & $max$ $G_{u}$ \\
-    \midrule
- $(n_{100},\sigma_{0.5},D_{01})$  & 3,97  & 3,97  & (3,97, 3,99) & 0,0000 & 0,0016 \\
- $(n_{100},\sigma_{0.5},D_{02})$ & 0,82  & 0,79  & (0,79, 0,80) & 0,0003 & 0,0008 \\
- $(n_{100},\sigma_{0.5},D_{03})$& 0,10  & 0,08  & (0,08, 0,09) & 0,0002 & 0,0003 \\
- $(n_{100},\sigma_{0.5},D_{04})$ & 0,01  & 0,00  & (0,00, 0,01) & 0,0000 & 0,0001 \\
-    \bottomrule
-    \end{tabular}%
-  \label{uniform2}%
-\end{table}%
 
 \section{Figures of the total downtime of the test bed}
 
