@@ -18,6 +18,7 @@
 \usepackage{booktabs,caption,fixltx2e}
 \usepackage[flushleft]{threeparttable}
 \DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareGraphicsExtensions{.pdf,.eps}
 \usepackage[toc,page]{appendix}
 \usepackage{natbib}
 \begin{document}
@@ -40,23 +41,51 @@ Capital goods \sep Reliability optimization  \sep Performance-based contracting 
 \end{keyword}
 \end{frontmatter}
 \section{Introduction}
-Capital goods are machines or products that are used by manufacturers to produce their end-products or that are used by service organizations to deliver their services. Advanced technical systems such as medical systems, manufacturing systems, defense systems are examples of capital goods that are critical for the operational processes of their customers. System downtime of these capital goods can cause serious consequences (e.g., millions of euros of reduced production output, extra waiting time of passengers, failure of military missions). Therefore, customers of these complex systems, such as hospitals, militaries and factories, require high availabilities of these systems. On the other hand, the engineering systems involved in capital goods are becoming more and more complex due to the advancement of technologies. The maintenance and repair tasks are too challenging for customers to take care of by themselves. Thus, after-sale services such as maintenances and repairs are often needed by the customers.
+
+%%%%%%%% the first graph give the main context of the paper
+Capital goods are machines or products that are used by manufacturers to produce their end-products or that are used by service organizations to deliver their services. Advanced technical systems such as medical systems, manufacturing systems, defense systems are examples of capital goods that are critical for the operational processes of their customers. System downtime of these capital goods can cause serious consequences (e.g., millions of euros of reduced production output, extra waiting time of passengers, failure of military missions) and maintaining and repairing these high-tech systems are too challenging for customers to take care of by themselves. As a result, the OEMs provide after sale service to their customer to keep the availability of the system on certain levels through service contracts. Different types of service contracts are mentioned in \citet{Cohen2006}, among different types of service contracts, Performance-based contracts(PBC) are novel agreements providing predetermined level of availability to meet the customers' objectives, according to U.S. Department of Defense's official definition. Therefore under a PBC, customers pay for services according to the system performance. When the system performance fails to meet the predetermined level of availability, OEMs will suffer from a penalty cost.
+
+%Therefore, customers of these complex systems, such as hospitals, militaries and factories, require high availabilities of these systems. On the other hand, the engineering systems involved in capital goods are becoming more and more complex due to the advancement of technologies. The maintenance and repair tasks are too challenging for customers to take care of by themselves. Thus, after-sale services such as maintenances and repairs are often needed by the customers.
 
 %(service contract and performance based contract: Oliva and Kallenberg (2003), Dennis and Kambil (2003), Cohen et al. (2006), Kim et al. (2007, 2011))
 
-As a result, integrating services as a major sustainable source of profit has been widely recommended by a large amount of papers in recent decades for original equipment manufacturers (OEMs). A study conducted by Accenture (\citet{Dennis}) shows that after-sale services contribute only 25\% of the total revenue across all manufacturing companies, but are responsible for $40\%\-50\%$ of the profit. Many OEMs thus have been transforming their business strategies from product-oriented to service-oriented(\citet{Cohen2006}). \citet{Oliva} mentioned that by integrating services into their core product offerings OEMs can get extra revenues, high margins, a higher specialization level, and competitive advantage. According to \citet{Kim2007} and \citet{Oliva}, there are mainly two types of service contract in literature: material based contract and performance based contract. After selling a system, under the traditional material-based contract, the OEM is responsible for the repair of the system only within the warranty period, which is often short compared with the entire life cycle of the system. After the warranty period, the OEM will charge the customer for providing spare parts, maintenance, and other services to have high availability of the system. From customers' perspective, this may lead to higher spare parts costs, repair costs and labor costs, whereas system availabilities can be lower than the anticipation of the customer when buying the system. This undesired situation for the customer can be avoided by making better agreements with the OEM when a new system is being bought.
+%As a result, integrating services as a major sustainable source of profit has been widely recommended by a large amount of papers in recent decades for original equipment manufacturers (OEMs). A study conducted by Accenture (\citet{Dennis}) shows that after-sale services contribute only 25\% of the total revenue across all manufacturing companies, but are responsible for $40\%\-50\%$ of the profit. Many OEMs thus have been transforming their business strategies from product-oriented to service-oriented(\citet{Cohen2006}). \citet{Oliva} mentioned that by integrating services into their core product offerings OEMs can get extra revenues, high margins, a higher specialization level, and competitive advantage. According to \citet{Kim2007} and \citet{Oliva}, there are mainly two types of service contract in literature: material based contract and performance based contract. After selling a system, under the traditional material-based contract, the OEM is responsible for the repair of the system only within the warranty period, which is often short compared with the entire life cycle of the system. After the warranty period, the OEM will charge the customer for providing spare parts, maintenance, and other services to have high availability of the system. From customers' perspective, this may lead to higher spare parts costs, repair costs and labor costs, whereas system availabilities can be lower than the anticipation of the customer when buying the system. This undesired situation for the customer can be avoided by making better agreements with the OEM when a new system is being bought.
+%In reality, when a OEM is manufacturing a capital goods in the design phases, commonly it is facing more than one design plans for each critical components, each design has a different failure rate which is randomly distributed with certain distribution parameters,
 
-Performance based contracts (PBC) are novel agreements in the after-sale service market. According to the official U.S. Department of Defense (DoD) guidelines, “the essence of PBC is buying performance outcomes, not the individual parts and repair actions. Instead of buying set levels of spares, repairs, tools, and data, the new focus is on buying a predetermined level of availability to meet the customers' objectives. Therefore under a PBC, customers pay for services according to the system performance. When the system performance fails to meet the predetermined level of availability, OEMs will suffer from a penalty cost.  For instance, since the OEM is responsible to meet a predetermined system availability, if the system fails to meet the system availability target during the service period, e.g., 5-10 years, a penalty cost has to be paid to the customer according to the PBC. \citet{Guajardo} showed that PBC motivates the Rolls-Royce to invest more resources in product reliability and maintenance. \citet{Kim2011} proposed a model in game-theoretic settings to evaluate the trade-off between investing in reliability improvement and in spare assets, so that comparisons can be made regarding the efficiencies of the material-based contract and PBC.  Under the material-based contract, the suppliers invest on the inventory of spares to meet the availability target while under PBC, the suppliers invest on the reliability improvement as well as the spare parts inventory to achieve the same target. The results showed that the material-based contract is less efficient than PBC.
+%%%%%%%% From the second graph, go to our questions by explainning the three important characteristic:
 
-For OEMs,  it is thus important to estimate the system availabilities before the launching of systems. Several methods have been proposed to measure the interval availability during a service period in literature. As defined by \citet{Nakagawa}, interval availability is the fraction of time that a system is operational during a period of time $[0,T]$.
+%%%%%%%% 1) minmize LCC
+
+Under a PBC, the Life cycle cost (LCC) is a major concern of an OEM, which is defined as the total cost incurred in the design/development, production, operation, maintenance, support, and final disposition of a system over its anticipated useful life span (\citet{Barringer}). In \citet{Oner2007}, a methodology was proposed to measure the LCC of two specific engineer-to-order systems. The results showed that the maintenance cost and downtime cost, which is larger than the acquisition cost, constitute a significant portion of the LCC. These service costs are incurred by system failures, and system failure rates are highly dependent on system designs. Therefore, reliability design decision should be taken under the consideration of LCC and system availability target before investment decisions on new systems are made.
+
+%%%%%%%% 2) interval availability
+%For OEMs, it is important to estimate the system availabilities before the launching of systems. By measuring the interval availability of the system, the OEMs can
+
+To guarantee the quality of the service provided by the OEMs, the customers of these capital goods measure the availability of these complex systems over a predetermined time window. And the average performance of the capital goods should meet the required performance level. According to the PBCs, when the overall downtime of the system exceeds the targeted downtime, the OEMs will paid the penalty costs to their customers for not meeting the target. Therefore, it is important for the OEMs to calculate the probability that the total downtime exceeding the targeted downtime of a given system, so that they can make a trade off between the system performance level between the LCC.
+
+%%%%%%%% 3) uncertainty
+
+In reality, engineers have to select a certain design from all the possible alternatives for each critical component in the system during the design phase of a system. But the outcome of any development process for a certain design is uncertain with respect to the reliability requirement. For example, since the failure mechanisms of some emerging technologies (e.g., Micro-Electro-Mechanical Systems) are complex, it is often difficult to predict the actual reliability behaviors of the critical components before the development. Therefore newly-designed devices have been found to have different component reliabilities than the expectations after the completion of design. The uncertainty in component reliabilities can lead to large deviations of the realized system availabilities from the expected system availabilities (a point estimate for the system availability). In this case, the uncertainty in component reliabilities also needs to be considered in the decision making of system reliability design under a PBC.
+
+In this paper, we attempt to solve a system reliability design problem considering both uncertain component reliability and interval availability under a PBC, which has not been studied yet. The uncertainty under discussion in our paper is coming from the design phase of an advanced system.
 
 The contribution of the paper is as follows:
 
-Firstly, we consider the uncertainty lies in the failure rates of the components,
+Firstly, we take uncertainty in the failure rates of the critical components in to consideration, we assumed the failure rates are random variables following different probability distributions originating from the design phase of the system.
+
+Secondly, the
+The remainder of the paper is organized as follows:
+In
+
+
+
+
+\section{Literature}
+
+For OEMs,  it is thus important to estimate the system availabilities before the launching of systems. Several methods have been proposed to measure the interval availability during a service period in literature. As defined by \citet{Nakagawa}, interval availability is the fraction of time that a system is operational during a period of time $[0,T]$.
 
 \citet{Takacs} first derived the probability distribution function, the limiting distribution and the moments of the interval availability for an on-off stochastic process in close form. Because  it is hard to compute these close-form functions, many numerical methods have  also been developed to calculate the interval availability. \citet{DeSouza} developed two algorithms to compute the cumulative sojourn time of a finite-state Markov chain using the randomization technique. \citet{AlHanbali} developed a numerical approach to evaluate the distribution function of interval availability based on the work of \citet{DeSouza}, and approximated the distribution function by fitting the first two moments of it to a Beta distribution.
 
-Under a PBC, apart from the system availability, the Life cycle cost (LCC) is a major concern of an OEM, which is defined as the total cost  incurred in the design/development, production, operation, maintenance, support, and final disposition of a system over its anticipated useful life span (\citet{Barringer}). In \citet{Oner2007}, a methodology was proposed to measure the LCC of two specific engineer-to-order systems. The results showed that the maintenance cost and downtime cost, which is larger than the acquisition cost, constitute a significant portion of the LCC. These service costs are incurred by system failures, and system failure rates are highly dependent on system designs. Therefore, reliability design decision should be taken under the consideration of LCC and system availability target before investment decisions on new systems are made.
 %
 %(LCC Life cycle costs:  \"{O}ner et al. (2007)) ({interval availability}: Al Hanbali and van der Heijden (2013); Carrasco (2004); Kirmani and Hood (2008).)
 
@@ -75,77 +104,80 @@ To solve the reliability optimization problem considering component reliability 
  \label{fig:literature}
 \end{figure}
 
-In this paper, we attempt to solve a system reliability design problem considering both uncertain component reliability and interval availability under a PBC, which has not been studied yet. \citet{Jin} proposed a model to minimize the life cycle cost under performance-based contracts in the presence of uncertain system usage.  However, the uncertainty under discussion in our paper is coming from  the design phase of an advanced system. During the design phase of a system, engineers have to select a certain design from all the possible alternatives for each critical component in the system. In real life, the outcome of any development process for a certain design is uncertain with respect to the reliability requirement. For example, since the failure mechanisms of some emerging technologies (e.g., Micro-Electro-Mechanical Systems) are complex, it is often difficult to predict the actual reliability behaviors of the critical components before the development. Therefore newly-designed devices have been found to have different component reliabilities than the expectations after the completion of design. The uncertainty in component reliabilities can lead to large deviations of the realized system availabilities from the expected system availabilities (a point estimate for the system availability). In this case, the uncertainty in component reliabilities also needs to be considered in the decision making of system reliability design under a PBC. To make it more clear about the positioning of our work, we also include Figure \ref{fig:literature} for the readers.
-
-
-
-The remainder of the paper is organized as follows:
-
-
-\section{Notations and assumptions}
- \subsection{Notations}
-	 %\begin{center}
-   \begin{tabular}{l l}
-   %\hline
-$i$ & Index of critical components in the system, $i \in \{1,2,...n\}$\\
-%$M_{i}$ & Set of rough design alternatives that can be used for component $i$ \\
-$j$ & Index of rough design alternatives that can be used for component $i$, \\
-    & $j \in \{1,2,...m_{i}\}$.\\
-$T$ & The time length of the service contract period\\
-$D_0$ & Predetermined accepted total downtime in the service contract\\
-$x_{ij}$ & Decision variable of whether choosing the $j$th design of component $i$ or not\\
-$c_p$ & Penalty cost per time unit after the total system downtime exceeding $D_0$\\
-$c^{ij}_{a}$ & Design cost for the $j$th design of component $i$\\
-$c_r^{ij}$ & Repair cost per failure for the $j$th design of component $i$\\
-$r_{ij}$ & Repair time per failure for the $j$th design of component $i$\\
-$r_{i}(\boldsymbol{x_{i}})$ & Repair time per failure for component $i$\\
-$\Lambda_{ij}$ & Failure rate for the $j$th design of component $i$\\
-$\Lambda_{i}(\boldsymbol{x_{i}})$  & Failure rate of component $i$\\
-%$\Lambda(\boldsymbol{x})$  & System failure rate\\
-$\mu_{ij}$ & The expected failure rate for the $j$th design of component $i$ \\
-$\mu_{i}(\boldsymbol{x_{i}})$ & The expected failure rate of component $i$ \\
-%$\mu(\boldsymbol{x})$ & The expected system failure rate \\
-$\sigma_{ij}^{2}$ & The variance of the failure rate for the $j$th design of component $i$\\
-$\sigma_{i}^{2}(\boldsymbol{x_{i}})$ &  The variance of the failure rate for component $i$ \\
-%$\sigma^{2}(\boldsymbol{x})$ & The variance of the system failure rate \\
-%$P(x_{ij},n_{ij})$  & probability of $n_{ij}$ failures occurring in the $j$th design of component $i$ in $[0, T]$ \\
-$S(x_{ij})$ & Number of repairs for the $j$th design of component $i$ during $[0,T]$\\
-$S_{i}(\boldsymbol{x_{i}})$ & Number of repairs for component $i$ during $[0,T]$\\
-%$S(\boldsymbol{x})$ & Total number of failures in the system during $[0,T]$ \\
-$A_{i}(\boldsymbol{x_{i}})$  & Design cost of component $i$\\
-$A(\boldsymbol{x})$ & Design cost of the system\\
-%$N(x_{ij})$ & expected number of repairs occurring in the $j$th design of component $i$ in period $[0, T]$\\
-%$R_{ij}(x_{ij})$ &  expected repair cost of the $j$th design of component $i$ in $[0, T]$\\
-$R_{i}(\boldsymbol{x_{i}})$ & Expected repair cost of component $i$ in $[0, T]$\\
-$R(\boldsymbol{x})$ &  Expected repair cost of the system in $[0, T]$\\
-$D_{ij}(x_{ij})$ & Total downtime for the $j$th design of component $i$ in $[0, T]$\\
-$D_{i}(\boldsymbol{x_{i}})$& Total downtime of component $i$ in $[0, T]$\\
-$D(\boldsymbol{x})$ & Total downtime of the system in $[0, T]$\\
-$P(\boldsymbol{x})$ & Expected penalty cost due to downtime exceeding $D_{0}$ in $[0, T]$\\
-%$C_f$    & average repair cost in period $[0, T]$
-
-	\end{tabular}
-  %\end{center}
-	 \subsection{Assumptions}
-	
-   \begin{enumerate}
-   \item The components in discussion are all critical components. If a component fails, the entire system will stop functioning.
-  \item The system will be functioning for $T$ years. The exploitation phase is denoted by $[0, T]$. We assume that the system are sold at time $t=0$, and the design costs are also incurred at time $t=0$.
-  \item During the exploitation phase of the system $[0, T]$, its total downtime should be less than or equal to $D_0$ years. If the total downtime exceeds $D_0$ years, the OEM will be charged for a penalty cost with respect to the extra downtime and the penalty rate $c_p$.
-   \item The failure rates of the components are uncertain in the design phase and distributed with the same general distribution function. Components from different rough designs have different failure rate distribution parameters and design costs. The $j$th design of component $i$ has the failure rate $\Lambda_{ij}$ with mean $\mu_{ij}$ and variance $\sigma_{ij}^2$ and design cost $c_{ij}$.
- \item The life time of each component is independent and exponentially distributed. So the number of the failures for each component over $[0, T]$ has a Poisson distribution with a failure rate $\Lambda_{i}(\boldsymbol{x_{i}})$.
-		\item	Once the rough design of a component has been chosen, the value of the component failure rate remains fixed through $[0, T]$.
-  \item Once a failure occurs, a repair will be performed. The failed part will be replaced by a ready-to-use part (repair by replacement) from the secondary supplier. The failure rate remains the same after each replacement. The repair cost $c_r^{ij}$ is fixed for each rough design.
- 	
-	\end{enumerate}
-\section{Model description}
+\section{Models}
+\subsection{Model description}
 During the design phase of a system, engineers have to select a certain design from all the possible alternatives for each critical component in the system. Suppose the system is comprised of $n$ critical components. If one of these critical components fails, the system as a whole stops working. Then the system can be seen to have a series system structure. For each critical component $i \in \{1,2,...,n\}$, one rough design needs to be selected from a set of all the possible alternatives, which is denoted by $\{1,2,...,m_i\}$. Each rough design candidate of component $i$ in the set $\{1,2,...,m_i\}$ has different uncertain reliability parameters and cost parameters. We aim to find out the optimal combination of rough designs for the system to minimize the average total cost over the service period $T$ of a PBL contract.
 
 The lifetimes of the components are assumed to be independent and exponentially distributed. Then for a certain rough design $j$ of component $i$ ($i \in \{1,2,...,n\}$, $j \in \{1,2,...,m_i\}$), we denote its failure rate as $\Lambda_{ij}$, which can fully describe its failure process when its lifetime distribution is exponential. However, as we mentioned in the introduction section, the outcome of any development process for a certain design is uncertain. Therefore, the failure rate $\Lambda_{ij}$ of a certain rough design $j$ for component $i$ is usually not known for sure before the development of the rough design. We use a certain distribution with a probability density function $f_{\Lambda_{ij}}(.)$ or a probability mass function $p_{\Lambda_{ij}}(.)$ to describe the random failure rate $\Lambda_{ij}$ before the development of the rough design, which reflects the prior belief/information about the reliability uncertainty of the technologies used in the rough design. In the evaluation of the average total cost over the service period $T$, these design uncertainties will be taken into account for different combinations of rough designs.
 
 The system will be sold together with a PBL contract over a service period $T$. The OEM is responsible for all the repairs within the service period, as a material-based contract. Moreover, the system availability should be above a predetermined level for the whole service period. Or in other words, the total downtime of the service period should be lower than a predetermined value $D_0$. A penalty cost will be paid by the OEM to compensate the customer if the total downtime exceeds the predetermined level. As a result, the average total cost of a system over $[0, T]$ consists of three parts: (a) design cost, (b) repair cost, and (c) penalty cost. A detailed description of the evaluation of these cost elements are given in the following subsections.
 
+\subsection{Model formulation}
 
+The OEM is interested in minimizing the expected total life cycle cost $\pi(\boldsymbol{x})$, which is the sum of the total design cost $A(\boldsymbol{x})$, the expected system repair cost $R(\boldsymbol{x})$ and the expected penalty cost $P(\boldsymbol{x})$. Due to the randomness of the failure rates $\Lambda_{1}(\boldsymbol{x_{1}}),\Lambda_{2}(\boldsymbol{x_{2}}),...,\Lambda_{n}(\boldsymbol{x_{n}})$ in rough designs, the expected total life cycle cost $\pi(\boldsymbol{x})$ is random. If the decision maker is risk-neutral, the optimization model of this problem can be formulated as
+\begin{eqnarray}
+\text{(P)} \hspace{15mm} & min_{\boldsymbol{x}} & \hspace{10mm} \mathbb{E}_{\Lambda(\boldsymbol{x})} \bigg[ \pi(\boldsymbol{x})\bigg] \nonumber\\
+& \text{ s.t. }&  \hspace{5mm} \sum_{j=1}^{m_i}{x_{ij}}=1, \hspace{10mm} \text{for all} i \in \{1,2,...,n\} \nonumber\\
+& & \hspace{5mm} x_{ij} \in \{0,1\}, \hspace{10mm}  \text{for all} i \in \{1,2,...,n\}, j \in \{1,2,...,m_i\}
+\end{eqnarray}
+where $\pi(\boldsymbol{x})=A(\boldsymbol{x})+R(\boldsymbol{x})+P(\boldsymbol{x})$. Notice that in the above optimization formulation, although we do not include a probability constraint on the distribution of $\pi(\boldsymbol{x})$, the variance of $\pi(\boldsymbol{x})$ still gets penalized by the third cost term $P(\boldsymbol{x})$ in the objective function. This optimization problem is difficult to solve because of the complicated form of the objective function. In the objective function, the expected penalty cost $P(\boldsymbol{x})$ is a multiple integration over the ranges of the random failure rates, which is difficult to calculate. Therefore, in the next section, an approximation method will be proposed to make the evaluation of the objective function easier.
+%\section{Notations and assumptions}
+% \subsection{Notations}
+%	 %\begin{center}
+%   \begin{tabular}{l l}
+%   %\hline
+%$i$ & Index of critical components in the system, $i \in \{1,2,...n\}$\\
+%%$M_{i}$ & Set of rough design alternatives that can be used for component $i$ \\
+%$j$ & Index of rough design alternatives that can be used for component $i$, \\
+%    & $j \in \{1,2,...m_{i}\}$.\\
+%$T$ & The time length of the service contract period\\
+%$D_0$ & Predetermined accepted total downtime in the service contract\\
+%$x_{ij}$ & Decision variable of whether choosing the $j$th design of component $i$ or not\\
+%$c_p$ & Penalty cost per time unit after the total system downtime exceeding $D_0$\\
+%$c^{ij}_{a}$ & Design cost for the $j$th design of component $i$\\
+%$c_r^{ij}$ & Repair cost per failure for the $j$th design of component $i$\\
+%$r_{ij}$ & Repair time per failure for the $j$th design of component $i$\\
+%$r_{i}(\boldsymbol{x_{i}})$ & Repair time per failure for component $i$\\
+%$\Lambda_{ij}$ & Failure rate for the $j$th design of component $i$\\
+%$\Lambda_{i}(\boldsymbol{x_{i}})$  & Failure rate of component $i$\\
+%%$\Lambda(\boldsymbol{x})$  & System failure rate\\
+%$\mu_{ij}$ & The expected failure rate for the $j$th design of component $i$ \\
+%$\mu_{i}(\boldsymbol{x_{i}})$ & The expected failure rate of component $i$ \\
+%%$\mu(\boldsymbol{x})$ & The expected system failure rate \\
+%$\sigma_{ij}^{2}$ & The variance of the failure rate for the $j$th design of component $i$\\
+%$\sigma_{i}^{2}(\boldsymbol{x_{i}})$ &  The variance of the failure rate for component $i$ \\
+%%$\sigma^{2}(\boldsymbol{x})$ & The variance of the system failure rate \\
+%%$P(x_{ij},n_{ij})$  & probability of $n_{ij}$ failures occurring in the $j$th design of component $i$ in $[0, T]$ \\
+%$S(x_{ij})$ & Number of repairs for the $j$th design of component $i$ during $[0,T]$\\
+%$S_{i}(\boldsymbol{x_{i}})$ & Number of repairs for component $i$ during $[0,T]$\\
+%%$S(\boldsymbol{x})$ & Total number of failures in the system during $[0,T]$ \\
+%$A_{i}(\boldsymbol{x_{i}})$  & Design cost of component $i$\\
+%$A(\boldsymbol{x})$ & Design cost of the system\\
+%%$N(x_{ij})$ & expected number of repairs occurring in the $j$th design of component $i$ in period $[0, T]$\\
+%%$R_{ij}(x_{ij})$ &  expected repair cost of the $j$th design of component $i$ in $[0, T]$\\
+%$R_{i}(\boldsymbol{x_{i}})$ & Expected repair cost of component $i$ in $[0, T]$\\
+%$R(\boldsymbol{x})$ &  Expected repair cost of the system in $[0, T]$\\
+%$D_{ij}(x_{ij})$ & Total downtime for the $j$th design of component $i$ in $[0, T]$\\
+%$D_{i}(\boldsymbol{x_{i}})$& Total downtime of component $i$ in $[0, T]$\\
+%$D(\boldsymbol{x})$ & Total downtime of the system in $[0, T]$\\
+%$P(\boldsymbol{x})$ & Expected penalty cost due to downtime exceeding $D_{0}$ in $[0, T]$\\
+%%$C_f$    & average repair cost in period $[0, T]$
+%
+%	\end{tabular}
+%  %\end{center}
+%	 \subsection{Assumptions}
+%	
+%   \begin{enumerate}
+%   \item The components in discussion are all critical components. If a component fails, the entire system will stop functioning.
+%  \item The system will be functioning for $T$ years. The exploitation phase is denoted by $[0, T]$. We assume that the system are sold at time $t=0$, and the design costs are also incurred at time $t=0$.
+%  \item During the exploitation phase of the system $[0, T]$, its total downtime should be less than or equal to $D_0$ years. If the total downtime exceeds $D_0$ years, the OEM will be charged for a penalty cost with respect to the extra downtime and the penalty rate $c_p$.
+%   \item The failure rates of the components are uncertain in the design phase and distributed with the same general distribution function. Components from different rough designs have different failure rate distribution parameters and design costs. The $j$th design of component $i$ has the failure rate $\Lambda_{ij}$ with mean $\mu_{ij}$ and variance $\sigma_{ij}^2$ and design cost $c_{ij}$.
+% \item The life time of each component is independent and exponentially distributed. So the number of the failures for each component over $[0, T]$ has a Poisson distribution with a failure rate $\Lambda_{i}(\boldsymbol{x_{i}})$.
+%		\item	Once the rough design of a component has been chosen, the value of the component failure rate remains fixed through $[0, T]$.
+%  \item Once a failure occurs, a repair will be performed. The failed part will be replaced by a ready-to-use part (repair by replacement) from the secondary supplier. The failure rate remains the same after each replacement. The repair cost $c_r^{ij}$ is fixed for each rough design.
+% 	
+%	\end{enumerate}
+\section{Model Analysis}
 
 \subsection{Design cost}
 	
@@ -239,14 +271,6 @@ P(\boldsymbol{x})& = & \mathbb{E}_{S}\bigg\{\bigg[D(\boldsymbol{x})-D_{0}\bigg]^
 %&&\bigg\{\bigg[\sum_{i=1}^{n}{s_{i}r_{i}(\boldsymbol{x_{i}})}-D_{0}\bigg]^{+}c_{p} -\mathbb{E}_{\Lambda(\boldsymbol{x})} \bigg[ P(\boldsymbol{x}) \bigg]\bigg\}^{2} \prod_{i=1}^{n} f_{\Lambda_{i}(\boldsymbol{x_{i}})}(\lambda_{i}) \ d\lambda_{1}\dots d\lambda_{n}.
 %\end{eqnarray}
 
-\subsection{Optimization model}
-The OEM is interested in minimizing the expected total life cycle cost $\pi(\boldsymbol{x})$, which is the sum of the total design cost $A(\boldsymbol{x})$, the expected system repair cost $R(\boldsymbol{x})$ and the expected penalty cost $P(\boldsymbol{x})$. Due to the randomness of the failure rates $\Lambda_{1}(\boldsymbol{x_{1}}),\Lambda_{2}(\boldsymbol{x_{2}}),...,\Lambda_{n}(\boldsymbol{x_{n}})$ in rough designs, the expected total life cycle cost $\pi(\boldsymbol{x})$ is random. If the decision maker is risk-neutral, the optimization model of this problem can be formulated as
-\begin{eqnarray}
-\text{(P)} \hspace{15mm} & min_{\boldsymbol{x}} & \hspace{10mm} \mathbb{E}_{\Lambda(\boldsymbol{x})} \bigg[ \pi(\boldsymbol{x})\bigg] \nonumber\\
-& \text{ s.t. }&  \hspace{5mm} \sum_{j=1}^{m_i}{x_{ij}}=1, \hspace{10mm} \text{for all} i \in \{1,2,...,n\} \nonumber\\
-& & \hspace{5mm} x_{ij} \in \{0,1\}, \hspace{10mm}  \text{for all} i \in \{1,2,...,n\}, j \in \{1,2,...,m_i\}
-\end{eqnarray}
-where $\pi(\boldsymbol{x})=A(\boldsymbol{x})+R(\boldsymbol{x})+P(\boldsymbol{x})$. Notice that in the above optimization formulation, although we do not include a probability constraint on the distribution of $\pi(\boldsymbol{x})$, the variance of $\pi(\boldsymbol{x})$ still gets penalized by the third cost term $P(\boldsymbol{x})$ in the objective function. This optimization problem is difficult to solve because of the complicated form of the objective function. In the objective function, the expected penalty cost $P(\boldsymbol{x})$ is a multiple integration over the ranges of the random failure rates, which is difficult to calculate. Therefore, in the next section, an approximation method will be proposed to make the evaluation of the objective function easier.
 
 %\paragraph{\textbf{Proposition 1}} \textit{For component $i$, if there exist indices $k$ and $l\in J_{i}$ such that $\mu_{ik}\leq \mu_{il}$, $\sigma_{ik}\leq \sigma_{il}$, $c^{ik}_{a}\geq c^{il}_{a} $, $c^{ik}_{r}\geq c^{il}_{r} $ and $r_{ik} \leq r_{il}$ },  then the optimal solution of the problem (P) has $x_{il}=0$
 %
@@ -340,6 +364,33 @@ The procedure of the approximation evaluation method is illustrated in the follo
 \end{description}
 
 \end{description}
+
+
+\section{Optimization}
+
+In the previous section, we have discussed how a given policy, which is the selection of rough designs for all the critical components in the system can be evaluated in an approximate way. In this section, we will describe a method of finding a feasible policy for problem (P) with as low life cycle costs as possible. The problem is formulated as a binary integer programming with a nonlinear objective function.
+%which is equivalent to a knapsack problem with multiple-choice constraints, so that is $NP$-hard (Garey and Johnson 1979).
+
+According to Eq. \eqref{EXD1}, the expected penalty costs $\mathbb{E}_{\Lambda(\boldsymbol(X))}[P(\boldsymbol(X))]$ of problem (P) can be written as:
+\begin{eqnarray}
+\mathbb{E}_{\Lambda(\boldsymbol{x})}[P_{A}(\boldsymbol{x})]&=&c_{p}(\frac{k(\boldsymbol{x})-q(\boldsymbol{x})}{\theta(\boldsymbol{x})}-D_{0})\sum_{j=0}^{k(\boldsymbol{x})-2}{\frac{(\theta(\boldsymbol{x}) D_{0})^j}{j!}e^{-\theta(\boldsymbol{x}) D_{0}}}\nonumber\\
+&&+c_{p}(\frac{k(\boldsymbol{x})-q(\boldsymbol{x})}{\theta(\boldsymbol{x})})\frac{(\theta(\boldsymbol{x})D_{0})^{k(\boldsymbol{x})-1}}{(k(\boldsymbol{x})-1)!}e^{-\theta(\boldsymbol{x})D_{0}}
+\end{eqnarray}
+The we have the optimization problem formulated as:
+\begin{eqnarray}
+\text{($P_{A}$)} \hspace{15mm} & min_{\boldsymbol{x}} & \hspace{10mm} \mathbb{E}_{\Lambda} \bigg[ \pi_{A}(\boldsymbol{x})\bigg] \nonumber\\
+& \text{ s.t. }&  \hspace{5mm} \sum_{j=1}^{m_i}{x_{ij}}=1, \hspace{10mm} \forall i \in \{1,2,...,n\} \nonumber
+\end{eqnarray}
+where $\pi_{A}(\boldsymbol{x})=A(\boldsymbol{x})+R(\boldsymbol{x})+P_{A}(\boldsymbol{x})$.
+
+
+%The branch-and-bound (B\&B) method is the most widely used algorithm for solving Integer programming problems. However, according to Taha 1975, the original (B\&B) method in the Land-Doig method is not suitable to solve a non-linear integer programming (NIP) problem, because the validity of the branching rules requires linearity assumption. Dakin 1965 proposed a modified Land-Doig method proposed by makes the branching rule suitable for solving non-linear integer programming problem, under the condition that the objective function and each constraint function with respect to decision variables are concave and convex, respectively. Lee \textit {et al}. 1994 presented a B\&B method for solving separable convex integer programming problems. Sung and Cho 2000 have solved a reliability optimization problem of designing a hardware system involving numerous discrete choices among available component types among reliability, cost, performance, weight, etc. using an efficient B\&B problem. Since Sung and Cho 2000 generated upper bounds and lower bounds for each stage of their problem, the objective function should be decomposable. Another method for solving NIP problems is intelligent enumeration proposed by Taha 1975. Taha's method can only solve polynomial IP problems. For large reality problems, exact methods are lacking since they require a very large amount of computation time and specific properties of the objective function and constraints.
+\subsection{Exact analysis}
+\subsection{Numerical analysis}
+
+\newpage
+
+\section{Numerical results}
 
 \subsection{Accuracy of the approximation}
 To assess the accuracy of the approximation of the expected exceeding downtime $D_{E}^{A}(\boldsymbol{x})$, we use Monte Carlo simulation method to generate the simulation results $D_{E}^{S}(\boldsymbol{x})$ according to \ref{MCP}, so that the comparison between $D_{E}^{A}(\boldsymbol{x})$ and $D_{E}^{S}(\boldsymbol{x})$ can be made. A full factorial test bed is set up to show the accuracy of the approximation under different parameter settings. We investigate the effect of three factors: the number of the critical components $n$, standard deviation $\sigma_{i}(\boldsymbol{x_i})$ of the failure rate for each component and the predetermined targeted downtime $D_{0}$. Notice that although the standard deviation $\sigma_i$ is a function of the design $\boldsymbol{x_i}$, we will treat it as a parameter of the approximation model or simulation model to assess the approximation accuracy without loss of generality. Similarly, for $\mu_i(\boldsymbol{x_i})$ and $r_i(\boldsymbol{x_i})$ in the calculation of $D_{E}^{A}(\boldsymbol{x})$ and $D_{E}^{S}(\boldsymbol{x})$, we will also treat them as parameters ($\mu_i , r_i$) of the approximation model or simulation model.
@@ -512,29 +563,8 @@ Furthermore, our approximation method is more accurate when $n$ is large (e.g., 
     \end{tabular}%
   \label{uniform2}%
 \end{table}%
-
-
-\section{Optimization}
-
-In the previous section, we have discussed how a given policy, which is the selection of rough designs for all the critical components in the system can be evaluated in an approximate way. In this section, we will describe a method of finding a feasible policy for problem (P) with as low life cycle costs as possible. The problem is formulated as a binary integer programming with a nonlinear objective function.
-%which is equivalent to a knapsack problem with multiple-choice constraints, so that is $NP$-hard (Garey and Johnson 1979).
-
-According to Eq. \eqref{EXD1}, the expected penalty costs $\mathbb{E}_{\Lambda(\boldsymbol(X))}[P(\boldsymbol(X))]$ of problem (P) can be written as:
-\begin{eqnarray}
-\mathbb{E}_{\Lambda(\boldsymbol{x})}[P_{A}(\boldsymbol{x})]&=&c_{p}(\frac{k(\boldsymbol{x})-q(\boldsymbol{x})}{\theta(\boldsymbol{x})}-D_{0})\sum_{j=0}^{k(\boldsymbol{x})-2}{\frac{(\theta(\boldsymbol{x}) D_{0})^j}{j!}e^{-\theta(\boldsymbol{x}) D_{0}}}\nonumber\\
-&&+c_{p}(\frac{k(\boldsymbol{x})-q(\boldsymbol{x})}{\theta(\boldsymbol{x})})\frac{(\theta(\boldsymbol{x})D_{0})^{k(\boldsymbol{x})-1}}{(k(\boldsymbol{x})-1)!}e^{-\theta(\boldsymbol{x})D_{0}}
-\end{eqnarray}
-The we have the optimization problem formulated as:
-\begin{eqnarray}
-\text{($P_{A}$)} \hspace{15mm} & min_{\boldsymbol{x}} & \hspace{10mm} \mathbb{E}_{\Lambda} \bigg[ \pi_{A}(\boldsymbol{x})\bigg] \nonumber\\
-& \text{ s.t. }&  \hspace{5mm} \sum_{j=1}^{m_i}{x_{ij}}=1, \hspace{10mm} \forall i \in \{1,2,...,n\} \nonumber
-\end{eqnarray}
-where $\pi_{A}(\boldsymbol{x})=A(\boldsymbol{x})+R(\boldsymbol{x})+P_{A}(\boldsymbol{x})$.
-
-
-%The branch-and-bound (B\&B) method is the most widely used algorithm for solving Integer programming problems. However, according to Taha 1975, the original (B\&B) method in the Land-Doig method is not suitable to solve a non-linear integer programming (NIP) problem, because the validity of the branching rules requires linearity assumption. Dakin 1965 proposed a modified Land-Doig method proposed by makes the branching rule suitable for solving non-linear integer programming problem, under the condition that the objective function and each constraint function with respect to decision variables are concave and convex, respectively. Lee \textit {et al}. 1994 presented a B\&B method for solving separable convex integer programming problems. Sung and Cho 2000 have solved a reliability optimization problem of designing a hardware system involving numerous discrete choices among available component types among reliability, cost, performance, weight, etc. using an efficient B\&B problem. Since Sung and Cho 2000 generated upper bounds and lower bounds for each stage of their problem, the objective function should be decomposable. Another method for solving NIP problems is intelligent enumeration proposed by Taha 1975. Taha's method can only solve polynomial IP problems. For large reality problems, exact methods are lacking since they require a very large amount of computation time and specific properties of the objective function and constraints.
-\subsection{Exact analysis}
-\subsection{Numerical example}
+\newpage
+\subsection{Testbed for the optimization procedure}
 % Table generated by Excel2LaTeX from sheet 'Sheet1'
 \begin{table}[htbp]
   \centering
@@ -706,6 +736,8 @@ Number    & $c_{a}^{i1}$ & $c_{r}^{i1}$ & $r_{i1}$ & $\mu_{i1}$ & $\sigma_{i1}$ 
   \label{tab:deteroptimization}%
 \end{table}%
 
+\newpage
+\subsection{Results and managerial insights}
 
 \section{Conclusion}
 
