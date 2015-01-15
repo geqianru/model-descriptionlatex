@@ -50,7 +50,7 @@ Capital goods \sep Reliability optimization  \sep Performance-based contracting 
 \section{Introduction}
 
 %%%%%%%% the first graph give the main context of the paper
-Capital goods are machines or products that are used by manufacturers to produce their end-products or that are used by service organizations to deliver their services. Advanced technical systems such as medical systems, manufacturing systems, defense systems are examples of capital goods that are critical for the operational processes of their customers. System downtime of these capital goods can have serious consequences (e.g., millions of euros of reduced production output, extra waiting time of passengers, failure of military missions) and maintaining and repairing these high-tech systems are too challenging for customers to take care of by themselves. As a result, the OEMs provide after sale service to their customer to keep the availability of the system on certain levels through service contracts. Different types of service contracts are mentioned in \citet{Cohen2006}, among which, Performance-based contracts(PBC) are novel agreements providing predetermined level of availability to meet the customers' objectives, according to U.S. Department of Defense's official definition. Therefore under a PBC, customers pay for services according to the system performance. When the system performance fails to meet the predetermined level of availability, OEMs will suffer from a penalty cost.
+Capital goods are machines or products that are used by manufacturers to produce their end-products or that are used by service organizations to deliver their services. Advanced technical systems such as medical systems, manufacturing systems, defense systems are examples of capital goods that are critical for the operational processes of their customers. System downtime of these capital goods can have serious consequences (e.g., millions of euros of reduced production output, extra waiting time of passengers, failure of military missions) and maintaining and repairing these high-tech systems are too challenging for customers to take care of by themselves. As a result, the Original Equipment Manufactures (OEMs) provide after sale service to their customer to keep the availability of the system on certain levels through service contracts. Different types of service contracts are mentioned in \citet{Cohen2006}, among which, Performance-based contracts (PBC) are novel agreements promising a predetermined level of availability to meet the customers' objectives, according to U.S. Department of Defense's official definition. Therefore under a PBC, customers pay for services according to the system performance. When the system performance fails to meet the predetermined level of availability, OEMs will suffer from a penalty cost.
 
 %Therefore, customers of these complex systems, such as hospitals, militaries and factories, require high availabilities of these systems. On the other hand, the engineering systems involved in capital goods are becoming more and more complex due to the advancement of technologies. The maintenance and repair tasks are too challenging for customers to take care of by themselves. Thus, after-sale services such as maintenances and repairs are often needed by the customers.
 
@@ -114,7 +114,7 @@ In this paper, we focus on the cases in which component reliabilities can be sel
 %$i \in \{1,2,...,\(\lvert I\rvert\) \}$
 During the design phase of a system, engineers have to select a certain design from all the possible alternatives for each critical component in the system. Suppose the system is comprised of a set of critical components $I$. The number of components is denoted by $\lvert I \rvert$ with a series layout. If one of these critical components fails, the system as a whole stops working. For each critical component , one design needs to be selected from a set of possible alternatives denoted by $\{1,2,...,\lvert I \rvert \}$. Each design candidate of component $i$ in the set $\{1,2,...,\lvert J_{i}\rvert\}$ has its own uncertain reliability parameters and cost parameters. We aim to find out the optimal combination of designs for the system to minimize the average total cost over the service period $T$ of a PBL contract.
 
-The lifetimes of the components are assumed to be independent and exponentially distributed. Then for a certain rough design $j$ of component $i$ ($i \in \{1,2,...,\lvert I \rvert\}$, $j \in \{1,2,...,\lvert J_{i} \rvert\}$), we denote its failure rate as $\Lambda_{ij}$. However, as we mentioned in the introduction section, the outcome of any development process for a certain design is uncertain. Therefore, the failure rate $\Lambda_{ij}$ of design $j$ for component $i$ is usually not known for sure before the development of the rough design. We use distribution with a probability density function $f_{\Lambda_{ij}}(.)$ to describe the random failure rate $\Lambda_{ij}$ before the development of the rough design, which reflects the prior belief/information about the reliability uncertainty of the technologies used in the rough design. In the evaluation of the average total cost over the service period $T$, these design uncertainties will be taken into account for different combinations of rough designs.
+We assume that the failure process of each of design from each component is independent and follows a Poisson process. Without loss of generality, we exclude the cases when two or more failures happening at the same time, so each time when the system is down it only suffered from one failure. Then the lifetimes of the components are also independent and exponentially distributed. Then for a certain rough design $j$ of component $i$ ($i \in \{1,2,...,\lvert I \rvert\}$, $j \in \{1,2,...,\lvert J_{i} \rvert\}$), we denote its failure rate as $\Lambda_{ij}$. However, as we mentioned in the introduction section, the outcome of any development process for a certain design is uncertain. Therefore, the failure rate $\Lambda_{ij}$ of design $j$ for component $i$ is usually not known for sure before the development of the rough design. We use distribution with a probability density function $f_{\Lambda_{ij}}(.)$ to describe the random failure rate $\Lambda_{ij}$ before the development of the rough design, which reflects the prior belief/information about the reliability uncertainty of the technologies used in the rough design. In the evaluation of the average total cost over the service period $T$, these design uncertainties will be taken into account for different combinations of rough designs.
 
 The system will be sold together with a PBL contract over a service period $T$. The OEM is responsible for all the repairs within the service period. Moreover, the system availability should be above a predetermined level for the whole service period. Or in other words, the total downtime of the service period should be lower than a predetermined value $D_0$. A penalty cost will be paid by the OEM to compensate the customer if the total downtime exceeds the predetermined level. As a result, the average total cost of a system over $[0, T]$ consists of three parts: (a) acquisition cost, (b) repair cost, and (c) penalty cost. A detailed description of the evaluation of these cost elements are given in the following subsections.
 
@@ -251,9 +251,12 @@ Pr\bigg[S_{i}(\boldsymbol{x}_{i})=s_{i}\bigg] &=&\sum^{\rvert J_{i} \lvert}_{j=1
 &=&\sum^{\rvert J_{i} \lvert}_{j=1}{x_{ij}\int^{\infty}_{0}{\frac{e^{-\lambda_{ij}T}(\lambda_{ij}T)^{s_{i}}}{s_{i}!}f_{\Lambda_{ij}}(\lambda_{ij})}d\lambda_{ij}}
 \end{eqnarray}
 And the system downtime can be expressed as
+%\begin{eqnarray}
+%D(\boldsymbol{x})= r_{1}(\boldsymbol{x}_{1})S_{1}(\boldsymbol{x}_{1})+r_{2}(\boldsymbol{x}_{2})S_{2}(\boldsymbol{x}_{2})+\ldots+r_{n}(\boldsymbol{x}_{n})S_{n}(\boldsymbol{x}_{n}).
+%\label{D}
+%\end{eqnarray}
 \begin{eqnarray}
-D(\boldsymbol{x})= r_{1}(\boldsymbol{x}_{1})S_{1}(\boldsymbol{x}_{1})+r_{2}(\boldsymbol{x}_{2})S_{2}(\boldsymbol{x}_{2})+\ldots+r_{n}(\boldsymbol{x}_{n})S_{n}(\boldsymbol{x}_{n}).
-\label{D}
+D(\boldsymbol{x}) &=& \sum_{s_{1}=0}^{\infty}{Pr\bigg[S_{1}(\boldsymbol{x}_{1})=s_{1}\bigg]}\dots\sum_{s_{\rvert I \lvert}=0}^{\infty}{Pr\bigg[S_{\rvert I \lvert}(\boldsymbol{x}_{\rvert I \lvert})=s_{\rvert I \lvert}\bigg]} \bigg[\sum_{i=1}^{\rvert I \lvert}{s_{i}r_{i}(\boldsymbol{x}_{i})}\bigg] \label{systemdowntime}
 \end{eqnarray}
 
 According to the service contract, the OEM should pay a penalty cost to the customer. Since the failure rates $\Lambda_{1}(\boldsymbol{x}_{1}),\Lambda_{2}(\boldsymbol{x}_{2}),...,\Lambda_{n}(\boldsymbol{x}_{n})$ are random variables, the expected penalty cost is a random variable as well. Without loss of generality, we assume the failure rates are continuous random variables, with probability density functions $f_{\Lambda_{ij}}(.)$ over region $\mathcal{O}_{ij}$. Then the expected penalty cost due to extra downtime exceeding $D_{0}$ is given as
@@ -261,14 +264,9 @@ According to the service contract, the OEM should pay a penalty cost to the cust
 \small
 \begin{eqnarray}
 P(\boldsymbol{x})& = & \mathbb{E}\bigg\{\bigg[D(\boldsymbol{x})-D_{0}\bigg]^{+} c_{p} \bigg\} \nonumber\\
-%&=& \mathbb{E}_{S}\bigg\{\bigg[\sum_{i=1}^{n}{S_{i}(\boldsymbol{x_{i}})r_{i}(\boldsymbol{x_i})}-D_{0}\bigg]^{+} c_{p} \bigg\} \nonumber\\
-&=&\sum_{s_{1}=0}^{\infty}{Pr\bigg[S_{1}(\boldsymbol{x}_{1})=s_{1}\bigg]}\dots\sum_{s_{\rvert I \lvert}=0}^{\infty}{Pr\bigg[S_{\rvert I \lvert}(\boldsymbol{x}_{\rvert I \lvert})=s_{\rvert I \lvert}\bigg]} \bigg[\sum_{i=1}^{\rvert I \lvert}{s_{i}r_{i}(\boldsymbol{x}_{i})}-D_{0}\bigg]^{+}c_{p} \nonumber\\
-%&=&\sum^{\infty}_{s_{1}=0}\sum^{m_{1}}_{j=1}{x_{1j}}\int^{\infty}_{0}{Pr(S_{1j}=s_{1}|\Lambda_{1j}=\lambda_{1j})f_{\Lambda_{1j}}(\lambda_{1j})d\lambda_{1j}}\dots \nonumber\\
-%&&\sum^{\infty}_{s_{n}=0}\sum^{m_{n}}_{j=1}{x_{nj}}\int^{\infty}_{0}{Pr(S_{nj}=s_{n}|\Lambda_{ij}=\lambda_{ij})f_{\Lambda_{ij}}(\lambda_{ij})d\lambda_{ij}}\bigg[\sum_{i=1}^{n}{s_{i}r_{i}(\boldsymbol{x_{i}})}-D_{0}\bigg]^{+}c_{p} \nonumber\\
-&=& \sum^{\infty}_{s_{1}=0}\sum^{\rvert J_{1} \lvert}_{j=1}{x_{1j}}\int^{\infty}_{0}{\frac{e^{-\lambda_{1j}T}(\lambda_{1j}T)^{s_{1}}}{s_{1}!}f_{\Lambda_{1j}}(\lambda_{1j})d\lambda_{1j}}\dots \nonumber\\
-&&\sum^{\infty}_{s_{\rvert I \lvert}=0}\sum^{\rvert J_{\rvert I \lvert} \lvert}_{j=1}{x_{\rvert I \lvert j}}\int^{\infty}_{0}{\frac{e^{-\lambda_{\rvert I \lvert j}T}(\lambda_{\rvert I \lvert j}T)^{s_{\rvert I \lvert}}}{s_{\rvert I \lvert}!}f_{\Lambda_{\rvert I \lvert j}}(\lambda_{\rvert I \lvert j})d\lambda_{\rvert I \lvert j}}\bigg[\sum_{i=1}^{\rvert I \lvert}{s_{i}r_{i}(\boldsymbol{x}_{i})}-D_{0}\bigg]^{+}c_{p} \nonumber\\
-&=&\int^{\infty}_{0}\dots\int^{\infty}_{0}{\sum_{s_{1}=0}^{\infty}\sum^{\rvert J_{1} \lvert}_{j=1}{x_{1j}\frac{e^{\lambda_{1}T}(\lambda_{1}T)^{s_{1}}}{s_{1}!}\dots \sum_{s_{\rvert I \lvert}=0}^{\infty}\sum^{\rvert J_{\rvert I \lvert} \lvert}_{j=1}{x_{\rvert I \lvert j}\frac{e^{\lambda_{\rvert I \lvert}T}(\lambda_{\rvert I \lvert}T)^{s_{\rvert I \lvert}}}{s_{\rvert I \lvert}!}}}}\nonumber\\
-&&\bigg[\sum_{i=1}^{\rvert I \lvert}{s_{i}r_{i}(\boldsymbol{x}_{i})}-D_{0}\bigg]^{+}c_{p}d\lambda_{1j}\dots d\lambda_{\rvert I \lvert j}
+&=&\sum_{s_{1}=0}^{\infty}\sum_{s_{i}=0}^{\infty}\dots\sum_{s_{\rvert I \lvert}=0}^{\infty}{\prod_{i=1}^{\rvert I \lvert} {Pr\bigg[S_{i}(\boldsymbol{x}_{i})=s_{i}\bigg]}} \bigg[\sum_{i=1}^{\rvert I \lvert}{s_{i}r_{i}(\boldsymbol{x}_{i})}-D_{0}\bigg]^{+}c_{p} \nonumber\\
+&=& \sum_{s_{1}=0}^{\infty}\sum_{s_{i}=0}^{\infty}\dots\sum_{s_{\rvert I \lvert}=0}^{\infty}{\prod_{i=1}^{\rvert I \lvert}{\sum_{j=1}^{\rvert J_{\rvert i \lvert} \lvert}{x_{ij}\int_{0}^{\infty}{\frac{e^{-\lambda_{ij}T}(\lambda_{ij}T)^{s_{i}}}{s_{i}!}
+f_{\Lambda_{ij}}(\lambda_{ij})d\lambda_{ij}}}}}
 \label{penaltycost}
 \end{eqnarray}
 \normalsize
@@ -295,20 +293,19 @@ P(\boldsymbol{x})& = & \mathbb{E}\bigg\{\bigg[D(\boldsymbol{x})-D_{0}\bigg]^{+} 
 %\paragraph{\textbf{Proof}} The proof is given in \ref{Pro1}.
 
 \subsection{Approximate evaluation}
-In this section, we are going to explain how to evaluate a given selection plan of rough designs for all the component in the system approximately. For a given policy $\boldsymbol{\underline{x}}=[\boldsymbol{\underline{x}}_{1},\boldsymbol{\underline{x}}_{2},\dots,\boldsymbol{\underline{x}}_{\lvert I \rvert}]$, the design cost $A(\boldsymbol{\underline{x}})$ and the expected repair cost $R(\boldsymbol{\underline{x}})$ can be determined from Equation \eqref{A} and \eqref{ER}. These two cost terms are linear functions of the decision variables $\underline{\boldsymbol{x}}=[\boldsymbol{\underline{x}}_{1},\boldsymbol{\underline{x}}_{2},\dots,\boldsymbol{\underline{x}}_{\lvert I \rvert}]$. 
+In this section, we are going to explain how to evaluate a given selection plan of rough designs for all the component in the system approximately. For a given policy $\boldsymbol{\underline{x}}=[\boldsymbol{\underline{x}}_{1},\boldsymbol{\underline{x}}_{2},\dots,\boldsymbol{\underline{x}}_{\lvert I \rvert}]$, the design cost $A(\boldsymbol{\underline{x}})$ and the expected repair cost $R(\boldsymbol{\underline{x}})$ can be determined from Equation \eqref{A} and \eqref{ER}. These two cost terms are linear functions of the decision variables $\underline{\boldsymbol{x}}=[\boldsymbol{\underline{x}}_{1},\boldsymbol{\underline{x}}_{2},\dots,\boldsymbol{\underline{x}}_{\lvert I \rvert}]$.
 
-For the exact evaluation of the expected penalty cost $P(\boldsymbol{\underline{x}})$, we will suffer from the ``curse of dimensionality" when the number of critical components becomes large, since each critical component contributes a dimension in computing the convolution and integration in Equation \eqref{penaltycost}. The computation time will become intractable as the number of critical components grows. With the consideration of the stochastic nature of the system downtime $D(\boldsymbol{\underline{x}})$ and the real life situation, we introduce three type of approximation methods to estimate the expected penalty cost, which vary in dealing with the uncertainty levels of $D(\boldsymbol{\underline{x}})$.
-%It is trivial to compute the acquisition costs $A\underline{\boldsymbol(x)}$ and repair costs $R\underline{\boldsymbol(x)}$ for a given policy $\underline{\boldsymbol{x}}$, but for the exact evaluation of the expected penalty cost $P(\underline{\boldsymbol{x}})$, we will suffer from the ``curse of dimensionality" when the number of critical components becomes large, since each critical component contributes a dimension in computing the convolution and integration in Equation \eqref{penaltycost}. The computation time will become intractable as the number of critical components grows.
+For the exact evaluation of the expected penalty cost $P(\boldsymbol{\underline{x}})$, we will suffer from the ``curse of dimensionality" when the number of critical components becomes large, since each critical component contributes a dimension in computing the convolution and integration in Equation \eqref{penaltycost}. The computation time will become intractable as the number of critical components grows. From Equation \eqref{systemdowntime}, we can observe that there are two levels of uncertainty existing in $D(\boldsymbol{\underline{x}})$ throughout $[0, T]$. The first level of uncertainty originates from the number of failures $S_{i}(\boldsymbol{\underline{x}})$ ($i \in \{1,2,...,\lvert I \rvert\}$), which is a Poisson distributed random variable. The second level of uncertainty comes from the failure rates $\lambda_{ij}$ ($i \in \{1,2,\dots,\lvert I \rvert\}$, $j \in \{1,2,\dots, \lvert J_{i} \rvert\}$), which is a generally distributed random variable. With the consideration of the stochastic nature of the system downtime $D(\boldsymbol{\underline{x}})$ and the real life situation, we introduce three type of approximation methods to estimate the expected penalty cost, which vary in dealing with the uncertainty levels of $D(\boldsymbol{\underline{x}})$. As is commonly used in the real world, in the first evaluation method, we use the expected the downtime as the actual downtime, which ignore both levels of the uncertainty. According to current literatures, for example,  the uncertainty existing in the failure rates are usually ignored, so in the second evaluation method, we only consider the uncertainty of the number of failures of the system. While for the third evaluation method, we address both uncertainty levels of $D(\boldsymbol{\underline{x}})$ by using the two-moment fit method. The comparison of these methods will be further shown in Section \ref{sec:numerical results}.
 
-
-  With the consideration of the real life situation, we introduce three types of approximation methods to estimate the expected penalty cost, which varies in dealing with the uncertainty in the stochastic nature of the system downtime. To check the accuracy of these method, we will further compare the results of these different methods with the simulation results generated by the Monte Carlo method in Section \ref{sec:numerical results}.
-
-To approximate the system downtime of a given policy, first, for the total downtime of the $j$th design in component $i$ in $[0, T]$, we have its first moment, second moment and variance written as:
+To drive the first and second moment of $D(\boldsymbol{\underline{x}})$, first, for the total downtime of the $j$th design in component $i$ in $[0, T]$, the first moment is given as:
 \small
 \begin{eqnarray}
 \mathbb{E}(D_{ij}) &=& \int_{\lambda_{ij}\in \mathcal O_{ij}}\mathbb{E}\bigg[D_{ij} \bigg\vert \Lambda_{ij}=\lambda_{ij}\bigg]f_{\Lambda_{ij}}(\lambda_{ij})d\lambda_{ij} \nonumber\\
  &=& \int_{\lambda_{ij}\in \mathcal O_{ij} } \lambda_{ij}T r_{ij}f_{\Lambda_{ij}}(\lambda_{ij})d\lambda_{ij} \nonumber\\
- &=& \mu_{ij} T r_{ij}\\
+ &=& \mu_{ij} T r_{ij}
+\end{eqnarray}
+By using the moment generating function of $D_{ij}$, we have the second moment and variance written as:
+\begin{eqnarray}
 \mathbb{E}(D^{2}_{ij}) &=& \int_{\lambda_{ij}\in \mathcal O_{ij}}\mathbb{E}\bigg[D^{2}_{ij} \bigg\vert \Lambda_{ij}=\lambda_{ij}\bigg]f_{\Lambda_{ij}}(\lambda_{ij})d\lambda_{ij}  \nonumber\\
 &=& \int_{\lambda_{ij}\in \mathcal O_{ij}} {r^{2}_{ij}\lambda_{ij}T(1+\lambda_{ij}T)f_{\Lambda_{ij}}(\lambda_{ij})d\lambda_{ij}} \nonumber\\
 &=& r^{2}_{ij}T\mu_{ij} + r^{2}_{ij}T^{2}(\sigma^{2}_{ij}+\mu^{2}_{ij}) \\
@@ -333,6 +330,7 @@ D(\boldsymbol{\underline{x}}) &=& \sum_{i=1}^{\lvert I \rvert}D_{i}(\boldsymbol{
 \sigma^{2}_{D}(\boldsymbol{\underline{x}})&=&\textrm{Var}[D(\boldsymbol{\underline{x}})] = \sum_{i=1}^{\lvert I \rvert} \sum_{j=1}^{\lvert J_{i} \rvert}\textrm{Var}[D_{i}(\boldsymbol{\underline{x}}_{i})] = \sum_{i=1}^{\lvert I \rvert}\sum_{j=1}^{\lvert J_{i} \rvert}r_{ij}^{2}[T^{2}\sigma^{2}_{ij}+T\mu_{ij}]\underline{x}_{ij} \label{vardowntime}
 \end{eqnarray}
 \normalsize
+%With the first moment, second moment and variance of $D(\boldsymbol{\underline{x}})$, we can have
 %we have its total downtime $D_{i}(\boldsymbol{\underline{x}}_{i})$ and the mean and variance of $D_{i}(\boldsymbol{\underline{x}}_{i})$ are  written as:
 %\begin{eqnarray}
 %D_{i}(\boldsymbol{\underline{x}}_{i}) = \sum_{j=1}^{\lvert J_{i} \rvert}{D_{ij}\underline{x}_{ij}} \\
@@ -348,27 +346,27 @@ D_{A1}(\boldsymbol{\underline{x}}) = \sum^{\lvert I \rvert}_{i=1} \sum_{j=1}^{\l
 \label{approximation1}
 \end{eqnarray}
 \normalsize
-With $D_{A1}$ as the actual downtime, the penalty cost in Equation \eqref{penaltycost} can be approximated as:
+With $D_{A1}$ as the actual downtime, the exceeded downtime $D^{E}$ can be approximated as:
 \begin{eqnarray}
-P_{A1}(\boldsymbol{\underline{x}}) =\mathbb{E}\bigg\{\bigg[D(\boldsymbol{\underline{x}})-D_{0}\bigg]^{+}c_{p}\bigg\} = \bigg[D_{A1}(\boldsymbol{\underline{x}})-D_{0} \bigg]^{+}c_p \label{penapproximation1}
+D^{E}_{A1}(\boldsymbol{\underline{x}}) =\mathbb{E}\bigg\{\bigg[D(\boldsymbol{\underline{x}})-D_{0}\bigg]^{+}\bigg\} = \bigg[D_{A1}(\boldsymbol{\underline{x}})-D_{0} \bigg]^{+} \label{penapproximation1}
 \end{eqnarray}
-\subsubsection{Zero-sigma method}
-In current literature, when researchers are dealing with certain reliability optimization problems, for example \citet{Mettas} \citet{Oner2010} and \citet{Huang}, they did not consider the uncertainty of the failure rates of the components. So for the second approximation evaluation method, given that the lifetimes of the components are exponentially distributed, we will simply assume the failure rates of each design for each component is a constant. The $D(\boldsymbol{\underline{x}})$ can be approximated as $D_{A2}(\boldsymbol{\underline{x}})$:
+\subsubsection{Fixed failure rate method}
+In current literature, when researchers are dealing with certain reliability optimization problems, for example \citet{Mettas} \citet{Oner2010} and \citet{Huang}, they did not consider the uncertainty of the failure rates of the components. So for the second approximation evaluation method, given that the lifetimes of the components are exponentially distributed, we will simply assume the failure rates of each design for each component is a constant. $D^{E}(\boldsymbol{\underline{x}})$ can be approximated as $D^{E}_{A2}(\boldsymbol{\underline{x}})$:
 \small
 \begin{eqnarray}
-D_{A2}(\boldsymbol{\underline{x}}) &=& \sum_{s_{1}=0}^{\infty}Pr\bigg[S_{1}(\underline{\boldsymbol{x}}_{1})=s_{1}\bigg]\dots  \sum_{s_{\lvert I \rvert}=0}^{\infty}
-Pr\bigg[S_{\lvert I \rvert}(\underline{\boldsymbol{x}}_{\lvert I \rvert})=s_{\lvert I \rvert}\bigg]\bigg[\sum_{i=1}^{\rvert I \lvert}s_{i}r_{i}(\boldsymbol{\underline{x}}_{i})\bigg] \nonumber\\
-&=& \sum_{s_{1}=0}^{\infty}\sum_{j=1}^{\rvert J_{1}\lvert}{\frac{e^{-\mu_{1j}T}(\mu_{1j}T)^{s_{1}}}{s_{1}!}x_{1j}} \dots \sum_{s_{\rvert I \lvert}=0}^{\infty}\sum_{j=1}^{\rvert J_{\rvert I \lvert}\lvert}{\frac{e^{-\mu_{\rvert I \lvert j}T}(\mu_{\rvert I \lvert j}T)^{s_{\rvert I \lvert}}}{s_{\rvert I \lvert}!}x_{\rvert I \lvert j}}\bigg[\sum_{i=1}^{\rvert I \lvert}s_{i}r_{i}(\boldsymbol{\underline{x}}_{i})\bigg]
+D^{E}_{A2}(\boldsymbol{\underline{x}}) &=& \sum_{s_{1}=0}^{\infty}Pr\bigg[S_{1}(\underline{\boldsymbol{x}}_{1})=s_{1}\bigg]\dots  \sum_{s_{\lvert I \rvert}=0}^{\infty}
+Pr\bigg[S_{\lvert I \rvert}(\underline{\boldsymbol{x}}_{\lvert I \rvert})=s_{\lvert I \rvert}\bigg]\bigg[\sum_{i=1}^{\rvert I \lvert}s_{i}r_{i}(\boldsymbol{\underline{x}}_{i})-D_{0}\bigg] \nonumber\\
+&=& \sum_{s_{1}=0}^{\infty}\sum_{j=1}^{\rvert J_{1}\lvert}{\frac{e^{-\mu_{1j}T}(\mu_{1j}T)^{s_{1}}}{s_{1}!}x_{1j}} \dots \sum_{s_{\rvert I \lvert}=0}^{\infty}\sum_{j=1}^{\rvert J_{\rvert I \lvert}\lvert}{\frac{e^{-\mu_{\rvert I \lvert j}T}(\mu_{\rvert I \lvert j}T)^{s_{\rvert I \lvert}}}{s_{\rvert I \lvert}!}x_{\rvert I \lvert j}}\bigg[\sum_{i=1}^{\rvert I \lvert}s_{i}r_{i}(\boldsymbol{\underline{x}}_{i})-D_{0}\bigg]\nonumber
 \end{eqnarray}
 \normalsize
-Then, we have the approximation of the penalty cost written as:
-\small
-\begin{eqnarray}
-P_{A2}(\boldsymbol{\underline{x}}) &=& \mathbb{E}\bigg[D(x)-D_{0}\bigg]^{+}c_p \nonumber\\
-&=& \sum_{s_{1}=0}^{\infty}\sum_{j=1}^{\rvert J_{1}\lvert}{\frac{e^{-\mu_{1j}T}(\mu_{1j}T)^{s_{1}}}{s_{1}!}x_{1j}} \dots \sum_{s_{\rvert I \lvert}=0}^{\infty}\sum_{j=1}^{\rvert J_{\rvert I \lvert}\lvert}{\frac{e^{-\mu_{\rvert I \lvert j}T}(\mu_{\rvert I \lvert j}T)^{s_{\rvert I \lvert}}}{s_{\rvert I \lvert}!}x_{\rvert I \lvert j}} \nonumber\\
-&& \bigg[\sum_{i=1}^{\rvert I \lvert}s_{i}r_{i}(\boldsymbol{\underline{x}}_{i})-D_{0}\bigg]^{+}c_{p}
-\end{eqnarray}
-\normalsize
+%Then, we have the approximation of the penalty cost written as:
+%\small
+%\begin{eqnarray}
+%P_{A2}(\boldsymbol{\underline{x}}) &=& \mathbb{E}\bigg[D(x)-D_{0}\bigg]^{+}c_p \nonumber\\
+%&=& \sum_{s_{1}=0}^{\infty}\sum_{j=1}^{\rvert J_{1}\lvert}{\frac{e^{-\mu_{1j}T}(\mu_{1j}T)^{s_{1}}}{s_{1}!}x_{1j}} \dots \sum_{s_{\rvert I \lvert}=0}^{\infty}\sum_{j=1}^{\rvert J_{\rvert I \lvert}\lvert}{\frac{e^{-\mu_{\rvert I \lvert j}T}(\mu_{\rvert I \lvert j}T)^{s_{\rvert I \lvert}}}{s_{\rvert I \lvert}!}x_{\rvert I \lvert j}} \nonumber\\
+%&& \bigg[\sum_{i=1}^{\rvert I \lvert}s_{i}r_{i}(\boldsymbol{\underline{x}}_{i})-D_{0}\bigg]^{+}c_{p}
+%\end{eqnarray}
+%\normalsize
 \subsubsection{Two-moment fit method}
 
 To approximate both the uncertainty of the failure rate as well as the stochastic process of the failures happened in the system, we find an approximation method to calculate the distribution of the system downtime $D(\underline{\boldsymbol{x}})$. As we mentioned before, the total downtime $D(\underline{\boldsymbol{x}})$ is the summation of the downtime for all critical components and the number of failures for each component is Poisson distributed. In this approximate method, we approximate the downtime by fitting a mixed Erlang distribution to the first two moments of $D(\underline{\boldsymbol{x}})$. We got the first moment and variance of $D(\underline{\boldsymbol{x}})$, from Equation \eqref{expdowntime} and Equation \eqref{vardowntime}. Then the coefficient of variation of $D(\underline{\boldsymbol{x}})$ is given by
@@ -381,7 +379,6 @@ c_{v}(\boldsymbol{x}) &=& \frac{\sigma_{D}(\boldsymbol{x})}{\mu_{D}(\boldsymbol{
 %T^{2}\sum_{i=1}^{n}r_{i}(\boldsymbol{x_i})^{2}\int_{\lambda_{i}(\boldsymbol{x_i})\in\Lambda_{i}(\boldsymbol{x_i})}{\lambda_{i}(\boldsymbol{x_i})^{2}f(\lambda_{i}(\boldsymbol{x_i}))d\lambda_{i}(\boldsymbol{x_i})}\nonumber\\
 %&&+2T^{2}\sum_{i=1}^{n}\sum_{i\ne j}{r_{i}(\boldsymbol{x_i})r_{j}(\boldsymbol{x_j})\mu_{i}(\boldsymbol{x_i})\mu_{j}(\boldsymbol{x_j})}\nonumber\\
 %&&+T\sum_{i=1}^{n}{r_{i}(\boldsymbol{x_i})^{2}\mu_{i}(\boldsymbol{x_i})}
-
 \normalsize
 Given that $\mu_{D}>0$, and $0<c_{v}\leq 1$, according to Tijms 1994, we fit the downtime distribution to an Erlang$(k-1,k)$ distribution with parameters$(k,\theta,q_{E})$ such that the first two moments of $D(\boldsymbol{x})$ equal the first two moments of the Erlang $(k-1,k)$ distribution. Thus the parameters of the Erlang $(k-1,k)$ distribution can be obtained as
 \small
@@ -391,7 +388,7 @@ Given that $\mu_{D}>0$, and $0<c_{v}\leq 1$, according to Tijms 1994, we fit the
 &&\theta(\boldsymbol{x}) = \frac{k(\boldsymbol{x})-q_{E}(\boldsymbol{x})}{\mu_{D}(\boldsymbol{x})}. \label{theta1}
 \end{eqnarray}
 \normalsize
-Then for random failure rates $\Lambda_{1}(\boldsymbol{x_{1}})$, $\Lambda_{2}(\boldsymbol{x_{2}})$,..., $\Lambda_{n}(\boldsymbol{x_{n}})$ the expected exceeding total downtime can be approximated by
+Then for random failure rates $\Lambda_{1}(\boldsymbol{x_{1}})$, $\Lambda_{2}(\boldsymbol{x_{2}})$,..., $\Lambda_{n}(\boldsymbol{x_{n}})$ the expected exceeding total downtime and expected penalty costs can be approximated by
 \begin{eqnarray}
 \small
 D_{A3}^{E}(\boldsymbol{x})=\mathbb{E}\bigg\{\big[D(\boldsymbol{x})-D_{0}\big]^{+}\bigg\}
@@ -486,9 +483,9 @@ For the one-moment fit method, it is apparent that when $D_{\gamma} \leq 1$, the
   \caption{The parameter setting of the test bed}
     \begin{tabular}{lll}
     \toprule
-  $n_{\alpha}$ & $\sigma_{\beta} (\forall i \in \{1,...,n_{\alpha}\})$ & $D_{\gamma}$\\
+  $n$ & $c_{v} (\forall i \in \{1,...,n\})$ & $D_{f}$\\
     \midrule
-    5, 50, 100 & 0.2$\mu_{i}$, 0.35$\mu_{i}$, 0.5$\mu_{i}$ & $ 1, 1.1, 1.2, 1.3$ \\
+    5, 50, 100 & 0.2, 0.9, 1.5 & $ 1, 1.1, 1.2, 1.3$ \\
   \bottomrule
     \end{tabular}%
   \label{tab:testbedps}%
@@ -501,7 +498,7 @@ For the one-moment fit method, it is apparent that when $D_{\gamma} \leq 1$, the
     \toprule
     $n_{\alpha}$ & $T$ & $\mu_{i}$ &  $r_{i}$\\
     \midrule
-    $5$   &10& $\{0.500, 0.250, 0.167, 0.125, 0.100\}$ &$\{1,3,5,1,3\}$\\
+    $5$   &10& $\{0.200, 0.155, 0.110, 0.065, 0.020\}$ &$\{1,3,5,1,3\}$\\
     $50$  &10& $\{1,...,1/(\frac{1}{\mu_{i-1}}+0.182),...,0.101\}$ &$\{1,3,5,1,3,5,...,3\}$\\
     $100$ &10& $\{1,...,1/(\frac{1}{\mu_{i-1}}+0.091),...,0.100\}$ &$\{1,3,5,1,3,5,...,1\}$\\
     \bottomrule
@@ -514,8 +511,36 @@ We summarize the results of the test bed in Table \ref{tab:evaluationsummerylogn
 %which are denoted as $avg$ $ G_l$ and $max $ $G_l$ for lognormally-distributed failure rates, and denoted as $avg$ $G_n$ and $max$ $G_n$ for uniformly-distributed failure rates . The detailed results of $D_{E}^{A}/D_0$, $D_{E}^{S}/D_0$, confidence interval of the simulation result $D_{E}^{S}/D_0$, $avg$ $G$ and $max$ $G$ for each instance are shown in Table \ref{lognormal1} for lognormally-distributed failure rates and Table \ref{uniform1} for uniformly-distributed failure rates of \ref{detailapptable}. To take a better overview of the gaps, in Table \ref{generalapptable}, the comparison between $D_{E}^{A}/D_0$ and $D_{E}^{S}/D_0$ are made by computing $avg$ $G$ and $max$ $G$ for each level of every factor. For example, in the second row of Table \ref{generalapptable}, $avg$ $G$ and $max$ $G$ represent the average gap and maximum gap of the subset $\Omega_{n_{5}}=\{(n_{5},\sigma_{\beta},D_{\gamma})|\beta\in\{0.2,0.35,0.5\},\gamma\in\{01,02,03,04\}\}$ (when $n=5$).
 
 Generally, our approximation method is more accurate when $n$ is large (e.g., 50 or 100). This is due to the fact that the total downtime is the sum of $n$ independent random variables, and when $n$ is large the total downtime converges in distribution to a normal random variable regardless of the individual underlying distributions. Note that the computation times of the approximation models for all the instances are negligible compared with the simulation model. In order to better demonstrate the accuracy of the two-moment fit method, we also compare the probability density functions of the downtime distribution estimated from the simulation model with the ones estimated from the approximation model, as shown in Figure \ref{fig:lognormal} and Figure \ref{fig:uniform}. It is obvious that the downtime distributions estimated from the simulation model are approximately the same as the ones estimated from the two moment fit model for various settings of $n$ and $\sigma$.
+\small
 
-%
+% Table generated by Excel2LaTeX from sheet 'Sheet7'
+\begin{table}[htbp]
+  \centering
+    \caption{Average gap and maximum gap between the simulation results and three evaluation methods}
+    \begin{tabular}{lrrrrrr}
+    \toprule
+    & \multicolumn{2}{c}{One-moment fit method} & \multicolumn{2}{c}{Fixed-failure rate method} & \multicolumn{2}{c}{Two-moment fit method}  \\
+    & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} \\
+    \midrule
+    $\Lambda$ & 8,79\% & 32,62\% & 3,20\% & 12,40\% & 0,48\% & 3,79\% \\
+    $\Lambda_{n_{5}}$ & 19,36\% & 32,62\% & 6,27\% & 12,40\% & 1,27\% & 3,79\% \\
+    $\Lambda_{n_{50}}$  & 4,40\% & 11,76\% & 2,08\% & 5,60\% & 0,11\% & 0,50\% \\
+    $\Lambda_{n_{100}}$  & 2,62\% & 8,41\% & 1,26\% & 4,09\% & 0,06\% & 0,23\% \\
+    $\Lambda_{c_{v1}}$ & 6,01\% & 21,23\% & 0,42\% & 1,04\% & 0,09\% & 0,42\% \\
+    $\Lambda_{c_{v2}}$ & 8,59\% & 26,76\% & 3,00\% & 6,54\% & 0,20\% & 0,61\% \\
+    $\Lambda_{c_{v3}}$& 11,78\% & 32,62\% & 6,19\% & 12,40\% & 1,15\% & 3,79\% \\
+    $\Lambda_{D_{f1}}$ & 14,09\% & 32,62\% & 3,86\% & 12,40\% & 0,63\% & 3,79\% \\
+    $\Lambda_{D_{f2}}$ & 9,49\% & 26,78\% & 3,58\% & 12,33\% & 0,47\% & 3,10\% \\
+    $\Lambda_{D_{f3}}$ & 6,67\% & 21,89\% & 2,96\% & 11,58\% & 0,42\% & 2,84\% \\
+    $\Lambda_{D_{f4}}$ & 4,92\% & 18,05\% & 2,42\% & 10,71\% & 0,40\% & 2,56\% \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+
+
+% 
 % Table generated by Excel2LaTeX from sheet 'sigma0,35'
 %\begin{table}[htbp]
 %\small
@@ -547,31 +572,56 @@ Generally, our approximation method is more accurate when $n$ is large (e.g., 50
 
 % Table generated by Excel2LaTeX from sheet 'sigma0,35'
 % Table generated by Excel2LaTeX from sheet 'conclusiontable'
-\begin{table}[htbp]
-\small
-  \centering
-  \caption{Average gap and maximum gap between the simulation results and three evaluation methods}
-    \begin{tabular}{lrrrrrr}
-    \toprule
-          & \multicolumn{2}{c}{One-moment fit method} & \multicolumn{2}{c}{Zero-sigma method} & \multicolumn{2}{c}{Two-moment fit method}  \\
-          & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} \\
-    \midrule
-    $\Lambda$ & 4.09\% & 17.14\% & 0.72\% & 3.01\% & 0.04\% & 0.29\% \\
-   $\Lambda_{n_{1}}$ & 9.57\% & 17.14\% & 1.48\% & 3.01\% & 0.10\% & 0.29\% \\
-   $\Lambda_{n_{2}}$ & 1.66\% & 5.54\% & 0.45\% & 1.56\% & 0.01\% & 0.09\% \\
-    $\Lambda_{n_{3}}$& 1.02\% & 3.96\% & 0.25\% & 1.12\% & 0.00\% & 0.05\% \\
-      $\Lambda_{\sigma_{1}}$ & 3.59\% & 14.70\% & 0.22\% & 0.56\% & 0.04\% & 0.29\% \\
-     $\Lambda_{\sigma_{2}}$ & 4.02\% & 15.74\% & 0.66\% & 1.59\% & 0.04\% & 0.28\% \\
-    $\Lambda_{\sigma_{3}}$& 4.65\% & 17.14\% & 1.29\% & 3.01\% & 0.03\% & 0.24\% \\
-        $\Lambda_{D_{1}}$ & 8.07\% & 17.14\% & 1.09\% & 1.72\% & 0.03\% & 0.29\% \\
-        $\Lambda_{D_{2}}$ & 4.22\% & 11.89\% & 0.85\% & 1.63\% & 0.02\% & 0.23\% \\
-        $\Lambda_{D_{3}}$ & 2.48\% & 8.18\% & 0.55\% & 1.40\% & 0.05\% & 0.25\% \\
-        $\Lambda_{D_{4}}$ & 1.57\% & 5.60\% & 0.41\% & 1.17\% & 0.06\% & 0.28\% \\
-    \bottomrule
-    \end{tabular}%
-  \label{tab:evaluationsummerylognormal}%
-\end{table}%
+%\begin{table}[htbp]
+%\small
+%  \centering
+%  \caption{Average gap and maximum gap between the simulation results and three evaluation methods}
+%    \begin{tabular}{lrrrrrr}
+%    \toprule
+%          & \multicolumn{2}{c}{One-moment fit method} & \multicolumn{2}{c}{Zero-sigma method} & \multicolumn{2}{c}{Two-moment fit method}  \\
+%          & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} \\
+%    \midrule
+%    $\Lambda$ & 4.09\% & 17.14\% & 0.72\% & 3.01\% & 0.04\% & 0.29\% \\
+%   $\Lambda_{n=5}$ & 9.57\% & 17.14\% & 1.48\% & 3.01\% & 0.10\% & 0.29\% \\
+%   $\Lambda_{n=50}$ & 1.66\% & 5.54\% & 0.45\% & 1.56\% & 0.01\% & 0.09\% \\
+%    $\Lambda_{n=100}$& 1.02\% & 3.96\% & 0.25\% & 1.12\% & 0.00\% & 0.05\% \\
+%      $\Lambda_{c_{v}=0.2}$ & 3.59\% & 14.70\% & 0.22\% & 0.56\% & 0.04\% & 0.29\% \\
+%     $\Lambda_{c_{v}=0.35}$ & 4.02\% & 15.74\% & 0.66\% & 1.59\% & 0.04\% & 0.28\% \\
+%    $\Lambda_{c_{v}=0.5}$& 4.65\% & 17.14\% & 1.29\% & 3.01\% & 0.03\% & 0.24\% \\
+%        $\Lambda_{D_{f}=1}$ & 8.07\% & 17.14\% & 1.09\% & 1.72\% & 0.03\% & 0.29\% \\
+%        $\Lambda_{D_{f}=1.1}$ & 4.22\% & 11.89\% & 0.85\% & 1.63\% & 0.02\% & 0.23\% \\
+%        $\Lambda_{D_{f}=1.2}$ & 2.48\% & 8.18\% & 0.55\% & 1.40\% & 0.05\% & 0.25\% \\
+%        $\Lambda_{D_{f}=1.3}$ & 1.57\% & 5.60\% & 0.41\% & 1.17\% & 0.06\% & 0.28\% \\
+%    \bottomrule
+%    \end{tabular}%
+%  \label{tab:evaluationsummerylognormal}%
+%\end{table}%
 
+% Table generated by Excel2LaTeX from sheet 'erlong05Dec'
+%\begin{table}[htbp]
+%  \centering
+%  \caption{Average gap and maximum gap between the simulation results and three evaluation methods}
+%    \begin{tabular}{lrrrrrr}
+%   \toprule
+%          & \multicolumn{2}{c}{One-moment fit method} & \multicolumn{2}{c}{Zero-sigma method} & \multicolumn{2}{c}{Two-moment fit method}  \\
+%          & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} & \multicolumn{1}{c}{avg Gap} & \multicolumn{1}{c}{max Gap} \\
+%    \midrule
+%    $\Lambda$ & 9,20\% & 32,84\% & 3,61\% & 12,62\% & 0,51\% & 3,57\% \\
+%    $\Lambda_{n=5}$ & 20,17\% & 32,84\% & 7,08\% & 12,62\% & 1,36\% & 3,57\% \\
+%    $\Lambda_{n=50}$ & 4,65\% & 11,70\% & 2,33\% & 5,54\% & 0,11\% & 0,56\% \\
+%    $\Lambda_{n=100}$ & 2,77\% & 8,37\% & 1,40\% & 4,06\% & 0,06\% & 0,26\% \\
+%    $\Lambda_{c_{v}=0.5}$ & 6,67\% & 22,74\% & 1,08\% & 2,52\% & 0,07\% & 0,30\% \\
+%    $\Lambda_{c_{v}=1}$ & 9,13\% & 27,93\% & 3,54\% & 7,71\% & 0,32\% & 0,99\% \\
+%    $\Lambda_{c_{v}=1.5}$ & 11,79\% & 32,84\% & 6,20\% & 12,62\% & 1,15\% & 3,57\% \\
+%    $\Lambda_{D_{f}=1}$ & 14,61\% & 32,84\% & 4,38\% & 12,62\% & 0,65\% & 3,57\% \\
+%    $\Lambda_{D_{f}=1.1}$ & 9,91\% & 26,65\% & 4,00\% & 12,19\% & 0,52\% & 3,24\% \\
+%    $\Lambda_{D_{f}=1.2}$ & 7,04\% & 21,87\% & 3,32\% & 11,55\% & 0,45\% & 2,87\% \\
+%    $\Lambda_{D_{f}=1.3}$ & 5,23\% & 18,10\% & 2,72\% & 10,76\% & 0,42\% & 2,51\% \\
+%    \bottomrule
+%    \end{tabular}%
+%  \label{tab:addlabel}%
+%\end{table}%
+\normalsize
 
 %\newpage
 \subsection{Numerical comparison of different optimization methods}
